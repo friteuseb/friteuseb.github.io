@@ -1,188 +1,179 @@
 // Variables
-$color-primary: #2c3e50;
-$color-secondary: #3498db;
+$color-primary: #3498db;
+$color-secondary: #2c3e50;
 $color-accent: #e74c3c;
-$color-background: #f9f9f9;
-$color-text: #333;
-$color-text-light: #777;
-$color-white: #fff;
+$color-background: #f8f9fa;
+$color-text: #333333;
+$color-text-light: #6c757d;
+$color-white: #ffffff;
 
-$font-primary: 'Montserrat', sans-serif;
-$font-secondary: 'Roboto', sans-serif;
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Roboto Mono', monospace;
 
-$border-radius: 6px;
-$transition-duration: 0.3s;
-
-$max-width: 1200px;
-$content-width: 960px;
-$spacing: 20px;
-$large-spacing: $spacing * 2;
-
-// Dark Mode Variables
-$dark-bg-color: #1a1a1a;
-$dark-text-color: #e0e0e0;
-$dark-main-color: #4da6ff;
-$dark-highlight-color: #ff7b4d;
-$dark-section-bg: #2c2c2c;
+$max-width: 1000px;
+$border-radius: 3px;
+$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
 // Mixins
-@mixin transition($property: all) {
-  transition: $property $transition-duration ease;
-  will-change: $property;
+@mixin transition($property: all, $duration: 0.2s, $timing: ease) {
+  transition: $property $duration $timing;
 }
 
-@mixin box-shadow($shadow...) {
-  box-shadow: $shadow;
-}
-
-@mixin card-style {
+@mixin card {
   background-color: $color-white;
   border-radius: $border-radius;
-  @include box-shadow(0 3px 10px rgba(0,0,0,0.1));
-  @include transition(transform);
-
-  &:hover {
-    transform: translateY(-5px);
-  }
+  box-shadow: $box-shadow;
+  padding: 15px;
 }
 
 // Base Styles
-:root {
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-accent: #{$color-accent};
-  --color-background: #{$color-background};
-  --color-text: #{$color-text};
-  --color-text-light: #{$color-text-light};
-  --color-white: #{$color-white};
-}
-
 body {
-  font-family: $font-secondary;
-  background-color: var(--color-background);
-  color: var(--color-text);
-  line-height: 1.6;
+  font-family: $font-primary;
+  background-color: $color-background;
+  color: $color-text;
+  line-height: 1.5;
+  font-size: 14px;
   margin: 0;
   padding: 0;
-  font-size: 16px;
 }
 
 .container {
-  max-width: $content-width;
-  margin: 0 auto;
-  padding: 0 $spacing;
-}
-
-.full-width {
-  width: 100%;
   max-width: $max-width;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-primary;
-  line-height: 1.2;
-  margin-bottom: $spacing;
-  color: var(--color-primary);
+  font-family: $font-secondary;
+  margin-bottom: 15px;
+  color: $color-secondary;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
 
 a {
-  color: var(--color-secondary);
+  color: $color-primary;
   text-decoration: none;
-  @include transition(color);
+  @include transition;
 
   &:hover {
-    color: darken($color-secondary, 15%);
+    color: darken($color-primary, 10%);
   }
 }
 
-// Components
-.grid {
-  display: grid;
-  gap: $large-spacing;
-}
-
-.card {
-  @include card-style;
-  padding: $large-spacing;
-}
-
-// Specific Sections
-#dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  @include transition(background-color);
-  @include box-shadow(0 2px 5px rgba(0,0,0,0.2));
-  z-index: 1000;
-
-  i {
-    font-size: 24px;
-  }
-
-  .fa-sun {
-    display: none;
-  }
-
-  &:hover {
-    background-color: lighten($color-primary, 10%);
-  }
-}
-
-#hero {
-  background: linear-gradient(135deg, var(--color-primary), darken($color-primary, 15%));
-  color: var(--color-white);
-  text-align: center;
-  padding: $large-spacing 0;
+// Header
+header {
+  background-color: $color-white;
+  padding: 10px 0;
+  box-shadow: $box-shadow;
 
   .container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
   }
 
   h1 {
-    font-size: 3rem;
-    margin-bottom: $spacing;
-    color: var(--color-white);
-  }
-
-  .tagline {
+    margin: 0;
     font-size: 1.5rem;
-    margin-bottom: $spacing / 2;
   }
 
-  .sub-tagline {
-    font-size: 1.2rem;
-    opacity: 0.8;
+  nav {
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      margin: 0;
+
+      li {
+        margin-left: 15px;
+
+        a {
+          color: $color-text;
+          font-weight: 500;
+          font-size: 0.9rem;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
   }
 }
 
+// Sections
+section {
+  padding: 40px 0;
+
+  .section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background-color: $color-accent;
+      margin: 10px auto 0;
+    }
+  }
+}
+
+// Hero Section
+#hero {
+  background-color: $color-primary;
+  color: $color-white;
+  text-align: center;
+  padding: 60px 0;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: $color-white;
+  }
+
+  p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: $color-white;
+    color: $color-primary;
+    padding: 8px 20px;
+    border-radius: $border-radius;
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: darken($color-white, 5%);
+    }
+  }
+}
+
+// About Section
 #about {
   .container {
     display: flex;
     align-items: center;
-    gap: $large-spacing;
+    gap: 30px;
   }
 
   .profile-pic {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--color-white);
-    @include box-shadow(0 0 20px rgba(0, 0, 0, 0.1));
+    box-shadow: $box-shadow;
   }
 
   .about-content {
@@ -190,16 +181,17 @@ a {
   }
 }
 
+// Experience Section
 .timeline {
   position: relative;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 
   &::after {
     content: '';
     position: absolute;
-    width: 2px;
-    background-color: var(--color-secondary);
+    width: 1px;
+    background-color: $color-primary;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -207,11 +199,10 @@ a {
   }
 
   .timeline-item {
-    padding: 10px 40px;
+    padding: 10px 30px;
     position: relative;
     background-color: inherit;
     width: 50%;
-    margin-bottom: $large-spacing;
 
     &:nth-child(odd) {
       left: 0;
@@ -224,267 +215,134 @@ a {
     &::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
-      right: -10px;
-      background-color: var(--color-background);
-      border: 4px solid var(--color-secondary);
+      width: 12px;
+      height: 12px;
+      right: -6px;
+      background-color: $color-white;
+      border: 2px solid $color-primary;
       top: 15px;
       border-radius: 50%;
       z-index: 1;
     }
 
     &:nth-child(even)::after {
-      left: -10px;
+      left: -6px;
     }
 
     .timeline-content {
-      @extend .card;
-      width: calc(100% - 40px);
+      @include card;
     }
 
     .timeline-date {
-      position: absolute;
-      top: 0;
-      width: 120px;
-      padding: 5px 10px;
-      background-color: var(--color-secondary);
-      color: var(--color-white);
-      font-weight: bold;
-      text-align: center;
-      border-radius: 4px;
-      font-size: 0.9em;
-      z-index: 2;
-    }
-
-    &:nth-child(odd) .timeline-date {
-      right: -140px;
-    }
-
-    &:nth-child(even) .timeline-date {
-      left: -140px;
+      display: inline-block;
+      padding: 3px 8px;
+      background-color: $color-primary;
+      color: $color-white;
+      font-size: 0.8rem;
+      border-radius: $border-radius;
     }
   }
 }
 
-.skills-grid, .services-grid, .references-list, .certifications-grid {
-  @extend .grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
+// Skills Section
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
 
-.skill, .service, .reference-card {
-  @extend .card;
-}
+  .skill {
+    @include card;
 
-.skill-bar {
-  height: 10px;
-  background-color: lighten($color-secondary, 30%);
-  border-radius: 5px;
-  overflow: hidden;
+    h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
 
-  .skill-level {
-    height: 100%;
-    background-color: var(--color-secondary);
-    border-radius: 5px;
-  }
-}
+    .skill-bar {
+      height: 6px;
+      background-color: lighten($color-primary, 30%);
+      border-radius: $border-radius;
+      overflow: hidden;
 
-.certification {
-  text-align: center;
-
-  svg {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-    @include transition(transform);
-
-    &:hover {
-      transform: scale(1.1);
+      .skill-level {
+        height: 100%;
+        background-color: $color-primary;
+      }
     }
   }
+}
 
-  h3 {
-    font-size: 1rem;
-    margin-top: 10px;
+// Services Section
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+
+  .service {
+    @include card;
+    text-align: center;
+
+    i {
+      font-size: 2rem;
+      color: $color-primary;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
   }
 }
 
+// Contact Section
 #contact {
-  background: linear-gradient(135deg, var(--color-primary), darken($color-primary, 15%));
-  color: var(--color-white);
-  padding: $large-spacing 0;
+  background-color: $color-secondary;
+  color: $color-white;
 
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  h2 {
-    color: var(--color-white);
+  .section-title {
+    color: $color-white;
   }
 
   a {
-    color: var(--color-secondary);
+    color: $color-white;
+    text-decoration: underline;
 
     &:hover {
-      color: lighten($color-secondary, 15%);
+      color: darken($color-white, 10%);
     }
   }
 
   .social-links {
-    display: flex;
-    gap: $spacing;
+    margin-top: 15px;
 
-    .btn-social {
-      font-size: 24px;
-      color: var(--color-white);
-      @include transition(transform);
-
-      &:hover {
-        transform: scale(1.2);
-      }
+    a {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      text-decoration: none;
     }
   }
 }
 
-#articles {
-  background-color: var(--color-background);
-
-  .article-list {
-    @extend .grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .article-card {
-    @extend .card;
-
-    h3 {
-      font-size: 1.2em;
-      padding: 20px 20px 10px;
-    }
-
-    p {
-      padding: 0 20px;
-      font-size: 0.9em;
-    }
-
-    .read-more {
-      display: inline-block;
-      margin: 20px;
-      padding: 10px 15px;
-      background-color: var(--color-secondary);
-      color: var(--color-white);
-      border-radius: 5px;
-      @include transition(background-color);
-
-      &:hover {
-        background-color: darken($color-secondary, 10%);
-      }
-    }
-  }
-}
-
+// Footer
 footer {
-  background-color: darken($color-primary, 5%);
-  color: var(--color-white);
-  padding: $large-spacing 0;
+  background-color: $color-white;
+  padding: 15px 0;
   text-align: center;
-
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  a {
-    color: var(--color-secondary);
-  }
+  font-size: 0.9rem;
+  color: $color-text-light;
 }
 
-// Dark Mode Styles
-body.dark-mode {
-  --color-primary: #{$dark-main-color};
-  --color-secondary: #{$dark-highlight-color};
-  --color-background: #{$dark-bg-color};
-  --color-text: #{$dark-text-color};
-  --color-text-light: #{lighten($dark-text-color, 15%)};
-
-  header, .sidebar, .content section, .card, .timeline-content {
-    background-color: $dark-section-bg;
-  }
-
-  .profile-pic {
-    border-color: var(--color-secondary);
-  }
-
-  .timeline {
-    &::after, .timeline-item::after {
-      background-color: var(--color-secondary);
-    }
-
-    .timeline-date {
-      background-color: var(--color-secondary);
-      color: var(--color-background);
-    }
-  }
-
-  .skill-bar {
-    background-color: lighten($dark-bg-color, 10%);
-  }
-
-  #articles {
-    background-color: darken($dark-bg-color, 5%);
-
-    .article-card {
-      p {
-        color: var(--color-text-light);
-      }
-    }
-  }
-
-  .certification svg {
-    filter: brightness(0.8);
-  }
-
-  #contact, footer {
-    background: linear-gradient(135deg, darken($dark-main-color, 15%), $dark-main-color);
-  }
-
-  #dark-mode-toggle {
-    background-color: var(--color-secondary);
-
-    .fa-moon {
-      display: none;
-    }
-    
-    .fa-sun {
-      display: inline-block;
-    }
-
-    &:hover {
-      background-color: lighten($dark-highlight-color, 10%);
-    }
-  }
-}
-
-// Media Queries
+// Responsive Design
 @media (max-width: 768px) {
-  .container {
-    padding: 0 $spacing;
-  }
-
-  #hero {
-    h1 {
-      font-size: 2.5rem;
+  header {
+    .container {
+      flex-direction: column;
+      text-align: center;
     }
 
-    .tagline {
-      font-size: 1.2rem;
-    }
-
-    .sub-tagline {
-      font-size: 1rem;
+    nav ul {
+      margin-top: 10px;
     }
   }
 
@@ -500,77 +358,16 @@ body.dark-mode {
 
     .timeline-item {
       width: 100%;
-      padding-left: 70px;
-      padding-right: 25px;
+      padding-left: 50px;
+      padding-right: 15px;
 
       &::after {
         left: 15px;
       }
 
-      .timeline-content {
-        width: 100%;
-        float: none;
-      }
-
-      .timeline-date {
-        left: 15px;
-        right: auto;
-        transform: none;
+      &:nth-child(even) {
+        left: 0%;
       }
     }
-  }
-
-  #contact .container {
-    flex-direction: column;
-    text-align: center;
-
-    .social-links {
-      margin-top: $spacing;
-    }
-  }
-
-  footer .container {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-// Print styles
-@media print {
-  #dark-mode-toggle, .social-links {
-    display: none;
-  }
-
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-    color: #000;
-    background: #fff;
-  }
-
-  .container {
-    width: 100%;
-    max-width: none;
-  }
-
-  a {
-    text-decoration: underline;
-    color: #000;
-  }
-
-  h1, h2, h3 {
-    page-break-after: avoid;
-  }
-
-  img {
-    max-width: 100% !important;
-  }
-
-  .timeline::after, .timeline-item::after {
-    display: none;
-  }
-
-  .timeline-item {
-    page-break-inside: avoid;
   }
 }
