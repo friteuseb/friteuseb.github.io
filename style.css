@@ -236,7 +236,7 @@ footer {
   border-radius: 25px;
   overflow: hidden;
   margin: 10px 0;
-  height: 10px;
+  height: 20px; /* Augmenter la hauteur si nécessaire */
 }
 
 .skill-bar-fill {
@@ -244,8 +244,13 @@ footer {
   height: 100%;
   background-color: var(--main-color);
   width: 0;
-  transition: width 1s ease-out;
 }
+
+.skill-bar-fill[data-width] {
+  width: attr(data-width %); /* Utilisation de la valeur data-width pour définir la largeur */
+  transition: width 1s; /* Retirer cette ligne pour supprimer l'animation */
+}
+
 
 /* Services */
 #services {

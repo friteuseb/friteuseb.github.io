@@ -249,17 +249,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            // Animation des barres de compétences
-            const skillBars = document.querySelectorAll('.skill-bar-fill');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.width = entry.target.getAttribute('data-width');
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            skillBars.forEach(bar => observer.observe(bar));
 
             // Smooth scrolling pour les liens internes
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
