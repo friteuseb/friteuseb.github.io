@@ -87,9 +87,82 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
+    // Skill Bars Animation
+    function animateSkillBars() {
+        const skillLevels = document.querySelectorAll('.skill-level');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-level');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillLevels.forEach(skillLevel => {
+            skillLevel.style.width = 0;
+            observer.observe(skillLevel);
+        });
+    }
+
+    // SEO Chart
+    function createSEOChart() {
+        const ctx = document.getElementById('seoChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Organic Traffic',
+                    data: [1000, 1500, 2000, 2500, 3000, 3500],
+                    borderColor: 'rgb(0, 255, 0)',
+                    tension: 0.1
+                }, {
+                    label: 'Keyword Rankings',
+                    data: [10, 15, 20, 25, 30, 35],
+                    borderColor: 'rgb(0, 255, 255)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'rgb(0, 255, 0)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Timeline Animation
+    function animateTimeline() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+    }
+
     // Initialize everything
     setupCodeRain();
     setupDarkModeToggle();
     typeWriter("AI-Powered Digital Transformation Specialist", 0);
     setupSmoothScrolling();
+    animateSkillBars();
+    createSEOChart();
+    animateTimeline();
 });
