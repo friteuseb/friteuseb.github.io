@@ -1,6 +1,6 @@
 // Set up the SVG container
-const width = 600;
-const height = 400;
+const width = 800;
+const height = 600;
 const svg = d3.select("#seoGraph")
   .append("svg")
   .attr("width", width)
@@ -8,41 +8,55 @@ const svg = d3.select("#seoGraph")
 
 // Define the graph data
 const nodes = [
-  { id: "Home", group: 1 },
+  { id: "Site Web", group: 1 },
+  { id: "Page d'accueil", group: 2 },
   { id: "Services", group: 2 },
+  { id: "Blog", group: 2 },
+  { id: "Contact", group: 2 },
   { id: "SEO", group: 3 },
-  { id: "Content", group: 3 },
-  { id: "Analytics", group: 3 },
-  { id: "Case Studies", group: 2 },
-  { id: "Blog", group: 4 },
-  { id: "Contact", group: 5 }
+  { id: "Cocon Sémantique", group: 3 },
+  { id: "Mots-clés", group: 3 },
+  { id: "Backlinks", group: 3 },
+  { id: "Contenu", group: 4 },
+  { id: "Structure", group: 4 },
+  { id: "Optimisation On-page", group: 4 },
+  { id: "Optimisation Technique", group: 4 },
+  { id: "Analyse", group: 5 },
+  { id: "Stratégie", group: 5 }
 ];
 
 const links = [
-  { source: "Home", target: "Services", value: 1 },
-  { source: "Home", target: "Case Studies", value: 1 },
-  { source: "Home", target: "Blog", value: 1 },
-  { source: "Services", target: "SEO", value: 2 },
-  { source: "Services", target: "Content", value: 2 },
-  { source: "Services", target: "Analytics", value: 2 },
-  { source: "SEO", target: "Content", value: 3 },
-  { source: "SEO", target: "Analytics", value: 3 },
-  { source: "Content", target: "Analytics", value: 3 },
-  { source: "Case Studies", target: "SEO", value: 2 },
-  { source: "Case Studies", target: "Content", value: 2 },
-  { source: "Blog", target: "SEO", value: 2 },
-  { source: "Blog", target: "Content", value: 2 },
-  { source: "Home", target: "Contact", value: 1 }
+  { source: "Site Web", target: "Page d'accueil", value: 1 },
+  { source: "Site Web", target: "Services", value: 1 },
+  { source: "Site Web", target: "Blog", value: 1 },
+  { source: "Site Web", target: "Contact", value: 1 },
+  { source: "SEO", target: "Cocon Sémantique", value: 2 },
+  { source: "SEO", target: "Mots-clés", value: 2 },
+  { source: "SEO", target: "Backlinks", value: 2 },
+  { source: "SEO", target: "Contenu", value: 2 },
+  { source: "SEO", target: "Structure", value: 2 },
+  { source: "SEO", target: "Optimisation On-page", value: 2 },
+  { source: "SEO", target: "Optimisation Technique", value: 2 },
+  { source: "SEO", target: "Analyse", value: 2 },
+  { source: "SEO", target: "Stratégie", value: 2 },
+  { source: "Cocon Sémantique", target: "Structure", value: 3 },
+  { source: "Cocon Sémantique", target: "Contenu", value: 3 },
+  { source: "Mots-clés", target: "Contenu", value: 3 },
+  { source: "Mots-clés", target: "Optimisation On-page", value: 3 },
+  { source: "Backlinks", target: "Stratégie", value: 3 },
+  { source: "Contenu", target: "Optimisation On-page", value: 3 },
+  { source: "Structure", target: "Optimisation Technique", value: 3 },
+  { source: "Analyse", target: "Stratégie", value: 3 }
 ];
 
 // Create a force simulation
 const simulation = d3.forceSimulation(nodes)
-  .force("link", d3.forceLink(links).id(d => d.id))
-  .force("charge", d3.forceManyBody().strength(-100))
+  .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+  .force("charge", d3.forceManyBody().strength(-200))
   .force("center", d3.forceCenter(width / 2, height / 2));
 
 // Define color scale
-const color = d3.scaleOrdinal(d3.schemeSet2);
+const color = d3.scaleOrdinal(d3.schemeSet3);
 
 // Create links
 const link = svg.append("g")
@@ -58,7 +72,7 @@ const node = svg.append("g")
   .selectAll("circle")
   .data(nodes)
   .enter().append("circle")
-  .attr("r", 8)
+  .attr("r", 10)
   .attr("fill", d => color(d.group))
   .call(d3.drag()
     .on("start", dragstarted)
@@ -71,7 +85,7 @@ const label = svg.append("g")
   .data(nodes)
   .enter().append("text")
   .text(d => d.id)
-  .attr("font-size", 10)
+  .attr("font-size", 12)
   .attr("dx", 12)
   .attr("dy", 4)
   .attr("fill", "#00FF00");
@@ -93,6 +107,25 @@ function dragended(event) {
   event.subject.fx = null;
   event.subject.fy = null;
 }
+
+// Add tooltips
+const tooltip = d3.select("body").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
+
+node.on("mouseover", (event, d) => {
+  tooltip.transition()
+    .duration(200)
+    .style("opacity", .9);
+  tooltip.html(d.id)
+    .style("left", (event.pageX + 10) + "px")
+    .style("top", (event.pageY - 28) + "px");
+})
+.on("mouseout", () => {
+  tooltip.transition()
+    .duration(500)
+    .style("opacity", 0);
+});
 
 // Update positions
 simulation.on("tick", () => {
