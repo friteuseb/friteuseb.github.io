@@ -42,31 +42,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // Dark Mode Toggle
-    function setupDarkModeToggle() {
-        const toggleSwitch = document.getElementById('darkModeToggle');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            if (currentTheme === 'dark') {
-                toggleSwitch.checked = true;
-            }
-        }
-
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        toggleSwitch.addEventListener('change', switchTheme, false);
-    }
-
     // Typing Effect
     function typeWriter(text, i, fnCallback) {
         if (i < text.length) {
@@ -279,24 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize everything
     setupCodeRain();
-    setupDarkModeToggle();
     typeWriter("AI-Powered Digital Transformation Specialist", 0);
     setupSmoothScrolling();
     animateSkillBars();
     createSEOGraph(); // Remplacé createSEOChart par createSEOGraph
-    document.head.insertAdjacentHTML('beforeend', `
-        <style>
-        .timeline-item {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        </style>
-    `);
     animateTimeline();
 });
 
