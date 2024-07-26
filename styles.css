@@ -115,14 +115,14 @@ footer {
 }
 
 /* Skills Section */
-.skills-container {
+.skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
 .skill {
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(0, 255, 255, 0.05);
     padding: 1.5rem;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -142,7 +142,7 @@ footer {
 
 .skill-bar {
     height: 10px;
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(0, 255, 255, 0.1);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -156,11 +156,6 @@ footer {
 
 /* SEO Section Styles */
 #seo {
-    padding: 2rem 0;
-}
-
-#seo h2 {
-
 }
 
 .seo-container {
@@ -171,14 +166,14 @@ footer {
 }
 
 .seo-overview, .seo-details, .seo-visualization {
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(0, 255, 255, 0.05);
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
 }
 
 .seo-visualization {
-    grid-column: 1 / -1; /* Fait en sorte que la visualisation occupe toute la largeur du conteneur grid */
+    grid-column: 1 / -1;
 }
 
 .seo-visualization h3 {
@@ -207,11 +202,6 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    #seoGraph {
-        height: 400px;
-    }
-}
 /* Timeline Section */
 .timeline-container {
     position: relative;
@@ -233,7 +223,7 @@ footer {
     width: calc(50% - 2rem);
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(0, 255, 255, 0.05);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -257,8 +247,7 @@ footer {
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: bold;
+    justify-content: center;font-weight: bold;
     color: var(--accent-color);
 }
 
@@ -271,7 +260,7 @@ footer {
 }
 
 .timeline-item:hover {
-    background: rgba(0, 255, 0, 0.1);
+    background: rgba(0, 255, 255, 0.1);
     transform: translateY(-5px);
 }
 
@@ -401,4 +390,132 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
+}
+
+/* GitHub Projects Section */
+.github-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.github-repo {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.github-repo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+}
+
+.repo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.repo-name {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.repo-url {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.repo-description {
+    margin-bottom: 1rem;
+}
+
+.repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--accent-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--header-bg);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+.newsletter-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.1);
 }

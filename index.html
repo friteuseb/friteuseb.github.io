@@ -12,8 +12,15 @@
     <div id="code-rain"></div>
     
     <header>
-        <h1>Cyril Wolfangel</h1>
-        <p class="tagline">AI-Powered Digital Transformation Specialist</p>
+        <div class="header-content">
+            <div class="header-photo">
+                <img src="https://cyril-wolfangel.com/cyril_wolfangel_consultant.webp" alt="Cyril Wolfangel" class="profile-photo">
+            </div>
+            <div class="header-text">
+                <h1>Cyril Wolfangel</h1>
+                <p class="tagline">AI-Powered Digital Transformation Specialist</p>
+            </div>
+        </div>
         <nav>
             <ul>
                 <li><a href="#timeline">Timeline</a></li>
@@ -21,12 +28,12 @@
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#articles">Articles</a></li>
+                <li><a href="#github">GitHub</a></li>
             </ul>
         </nav>
         <label class="switch">
             <span class="slider round"></span>
         </label>
-        <button id="contactButton" class="button">Contact</button>
     </header>
 
     <main>
@@ -135,7 +142,7 @@
 
         <section id="competences">
             <h2><i class="fas fa-cogs"></i> Compétences professionnelles</h2>
-            <div class="skills-container">
+            <div class="skills-grid">
                 <div class="skill">
                     <span class="skill-name">Définition de propositions de valeur</span>
                     <div class="skill-bar">
@@ -145,25 +152,25 @@
                 <div class="skill">
                     <span class="skill-name">Architecture et expertise technique</span>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 60%;" data-level="60%"></div>
+                        <div class="skill-level" style="width: 85%;" data-level="85%"></div>
                     </div>
                 </div>
                 <div class="skill">
                     <span class="skill-name">Conseil stratégique</span>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%;" data-level="80%"></div>
+                        <div class="skill-level" style="width: 95%;" data-level="95%"></div>
                     </div>
                 </div>
                 <div class="skill">
                     <span class="skill-name">Management</span>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%;" data-level="70%"></div>
+                        <div class="skill-level" style="width: 80%;" data-level="80%"></div>
                     </div>
                 </div>
                 <div class="skill">
                     <span class="skill-name">Approches méthodologiques</span>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%;" data-level="85%"></div>
+                        <div class="skill-level" style="width: 92%;" data-level="92%"></div>
                     </div>
                 </div>
             </div>
@@ -171,12 +178,40 @@
 
         <section id="services">
             <h2><i class="fas fa-briefcase"></i> Services proposés</h2>
-            <ul>
-                <li>Planification stratégique et conseil en transformation digitale au sein du Groupe Talan</li>
-                <li>Développement d'affaires par la définition de propositions de valeur et l'analyse de la perception des consommateurs</li>
-                <li>Conseil en innovation et transformation digitale pour entreprises et organisations</li>
-            </ul>
-            <p>N'hésitez pas à me contacter pour discuter de vos besoins en matière de conseil et de support en transformation digitale.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>Réalisation de cocons sémantiques</h3>
+                    <p>Optimisez votre présence en ligne avec des structures de contenu SEO avancées.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Proposition de valeur</h3>
+                    <p>Ateliers stratégiques pour définir et affiner votre proposition de valeur unique.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performance numérique</h3>
+                    <p>Améliorez vos KPIs digitaux grâce à des stratégies data-driven.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-digital-tachograph"></i>
+                    </div>
+                    <h3>Stratégie numérique</h3>
+                    <p>Élaborez une feuille de route digitale alignée sur vos objectifs business.</p>
+                </div>
+            </div>
+            <div class="cta-container">
+                <p>Prêt à transformer votre présence digitale ?</p>
+                <a href="#contact" class="cta-button">Contactez-moi</a>
+            </div>
         </section>
 
         <section id="articles">
@@ -200,13 +235,54 @@
             </div>
         </section>
 
+        <section id="github">
+            <h2><i class="fab fa-github"></i> Projets GitHub</h2>
+            <div class="github-container">
+                <div class="github-repo">
+                    <div class="repo-header">
+                        <h3 class="repo-name">AI-Powered-Analytics</h3>
+                        <span class="repo-url">github.com/cyrilwolf/ai-analytics</span>
+                    </div>
+                    <p class="repo-description">Plateforme d'analyse de données utilisant l'IA pour générer des insights prédictifs.</p>
+                    <div class="repo-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Big Data</span>
+                    </div>
+                </div>
+                <div class="github-repo">
+                    <div class="repo-header">
+                        <h3 class="repo-name">QuantumBlockchain</h3>
+                        <span class="repo-url">github.com/cyrilwolf/quantum-blockchain</span>
+                    </div>
+                    <p class="repo-description">Implémentation expérimentale d'une blockchain sécurisée par cryptographie quantique.</p>
+                    <div class="repo-tags">
+                        <span class="tag">Quantum Computing</span>
+                        <span class="tag">Blockchain</span>
+                        <span class="tag">Cryptography</span>
+                    </div>
+                </div>
+                <div class="github-repo">
+                    <div class="repo-header">
+                        <h3 class="repo-name">NeuroMarketingAI</h3>
+                        <span class="repo-url">github.com/cyrilwolf/neuro-marketing-ai</span>
+                    </div>
+                    <p class="repo-description">Système de recommandation basé sur l'IA pour optimiser les stratégies de marketing digital.</p>
+                    <div class="repo-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Marketing</span>
+                        <span class="tag">Neural Networks</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="seo">
             <h2><i class="fas fa-chart-line"></i> SEO & SEA Expertise</h2>
             <div class="seo-container">
                 <div class="seo-overview">
                     <h3>Vue d'ensemble</h3>
-                    <p>Mon expertise en SEO et SEA se concentre sur la création de stratégies holistiques pour maximiser la visibilité en ligne et le ROI. J'utilise des techniques avancées comme le cocon sémantique pour structurer le contenu de manière optimale.</p>
-                </div>
+                    <p>Mon expertise en SEO et SEA se concentre sur la création de stratégies holistiques pour maximiser la visibilité en ligne et le ROI. J'utilise des techniques avancées comme le cocon sémantique pour structurer le contenu de manière optimale.</p></div>
                 <div class="seo-details">
                     <h3>Compétences Clés</h3>
                     <ul>
@@ -229,10 +305,29 @@
     </main>
 
     <footer>
-        <div class="social-links">
-            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@cyrilwolfangel.com</p>
+                <p>Tél: +33 6 12 34 56 78</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens professionnels</h3>
+                <a href="#" class="footer-link">LinkedIn</a>
+                <a href="#" class="footer-link">Twitter</a>
+                <a href="#" class="footer-link">Medium</a>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Restez informé de mes dernières publications et projets.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Votre email" required>
+                    <button type="submit">S'abonner</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Cyril Wolfangel. Tous droits réservés.</p>
         </div>
     </footer>
 
