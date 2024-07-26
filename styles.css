@@ -40,11 +40,35 @@ body::before {
     opacity: 0.7;
 }
 
+ul li {
+    margin-left: 20px;
+}
 header {
     background-color: var(--header-bg);
     padding: 2rem 1rem;
-    text-align: center;
     box-shadow: 0 2px 10px rgba(0, 255, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.header-photo {
+    margin-right: 2rem;
+}
+
+.profile-photo {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.header-text {
+    text-align: left;
 }
 
 nav ul {
@@ -224,8 +248,7 @@ footer {
     margin-bottom: 2rem;
     padding: 1.5rem;
     background: rgba(0, 255, 255, 0.05);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    border-radius: 10px;    transition: all 0.3s ease;
 }
 
 .timeline-item:nth-child(odd) {
@@ -246,8 +269,8 @@ footer {
     border: 2px solid var(--accent-color);
     border-radius: 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;font-weight: bold;
+    align-items: center;justify-content: center;
+    font-weight: bold;
     color: var(--accent-color);
 }
 
@@ -376,6 +399,10 @@ footer {
     #seoGraph {
         height: 300px;
     }
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
 }
 
 /* Floating Contact Button */
@@ -475,7 +502,7 @@ footer {
 }
 
 .footer-link {
-    display: block;
+display: block;
     color: var(--text-color);
     text-decoration: none;
     margin-bottom: 0.5rem;
@@ -518,4 +545,58 @@ footer {
     padding-top: 2rem;
     margin-top: 2rem;
     border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.service-card {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.cta-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
