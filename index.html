@@ -10,7 +10,6 @@
 </head>
 <body>
     <div id="code-rain"></div>
-    
     <header>
         <div class="header-content">
             <div class="header-photo">
@@ -21,7 +20,12 @@
                 <p class="tagline">AI-Powered Digital Transformation Specialist</p>
             </div>
         </div>
-        <nav>
+        <button id="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="mobile-nav">
             <ul>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#references">Références</a></li>
@@ -35,7 +39,6 @@
             <span class="slider round"></span>
         </label>
     </header>
-
     <main>
         <section id="introduction">
             <h2><i class="fas fa-user-circle"></i> Introduction</h2>
@@ -333,7 +336,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="seo-graph.js"></script>
     <script src="script.js"></script>
+    <script src="seo-graph.js"></script>
+
 </body>
 </html>

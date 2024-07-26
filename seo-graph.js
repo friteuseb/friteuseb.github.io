@@ -1,12 +1,16 @@
-// Set up the SVG container
-const width = 800;
-const height = 600;
-const svg = d3.select("#seoGraph")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+function createSEOGraph() {
+  const container = d3.select("#seoGraph");
+  container.selectAll("*").remove(); // Nettoie le contenu existant
 
-// Define the graph data
+  const containerWidth = container.node().getBoundingClientRect().width;
+  const width = Math.min(containerWidth, 800); // Limite la largeur maximale à 800px
+  const height = Math.min(width * 0.75, 600); // Ajuste la hauteur proportionnellement, max 600px
+
+  const svg = container.append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
+
+  // Définition des données des nœuds et des liens 
 const nodes = [
   { id: "Site Web", group: 1 },
   { id: "Page d'accueil", group: 2 },
@@ -49,97 +53,81 @@ const links = [
   { source: "Analyse", target: "Stratégie", value: 3 }
 ];
 
-// Create a force simulation
-const simulation = d3.forceSimulation(nodes)
-  .force("link", d3.forceLink(links).id(d => d.id).distance(100))
-  .force("charge", d3.forceManyBody().strength(-200))
-  .force("center", d3.forceCenter(width / 2, height / 2));
 
-// Define color scale
-const color = d3.scaleOrdinal(d3.schemeSet3);
+  const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(width * 0.1))
+    .force("charge", d3.forceManyBody().strength(-width * 0.25))
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
-// Create links
-const link = svg.append("g")
-  .selectAll("line")
-  .data(links)
-  .enter().append("line")
-  .attr("stroke", "#00FFFF")
-  .attr("stroke-opacity", 0.6)
-  .attr("stroke-width", d => Math.sqrt(d.value));
+  const color = d3.scaleOrdinal(d3.schemeSet3);
 
-// Create nodes
-const node = svg.append("g")
-  .selectAll("circle")
-  .data(nodes)
-  .enter().append("circle")
-  .attr("r", 10)
-  .attr("fill", d => color(d.group))
-  .call(d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended));
+  const link = svg.append("g")
+    .selectAll("line")
+    .data(links)
+    .enter().append("line")
+    .attr("stroke", "#00FFFF")
+    .attr("stroke-opacity", 0.6)
+    .attr("stroke-width", d => Math.sqrt(d.value));
 
-// Add labels to nodes
-const label = svg.append("g")
-  .selectAll("text")
-  .data(nodes)
-  .enter().append("text")
-  .text(d => d.id)
-  .attr("font-size", 12)
-  .attr("dx", 12)
-  .attr("dy", 4)
-  .attr("fill", "#00FF00");
+  const node = svg.append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("r", width * 0.015)
+    .attr("fill", d => color(d.group))
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended));
 
-// Define drag functions
-function dragstarted(event) {
-  if (!event.active) simulation.alphaTarget(0.3).restart();
-  event.subject.fx = event.subject.x;
-  event.subject.fy = event.subject.y;
+  const label = svg.append("g")
+    .selectAll("text")
+    .data(nodes)
+    .enter().append("text")
+    .text(d => d.id)
+    .attr("font-size", `${width * 0.02}px`)
+    .attr("dx", width * 0.02)
+    .attr("dy", width * 0.005)
+    .attr("fill", "#00FF00");
+
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+  }
+
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
+
+    node
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y);
+
+    label
+      .attr("x", d => d.x)
+      .attr("y", d => d.y);
+  });
+
+  // Ajout d'un gestionnaire de redimensionnement
+  window.addEventListener('resize', () => {
+    createSEOGraph(); // Recrée le graphique lors du redimensionnement
+  });
 }
 
-function dragged(event) {
-  event.subject.fx = event.x;
-  event.subject.fy = event.y;
-}
-
-function dragended(event) {
-  if (!event.active) simulation.alphaTarget(0);
-  event.subject.fx = null;
-  event.subject.fy = null;
-}
-
-// Add tooltips
-const tooltip = d3.select("body").append("div")
-  .attr("class", "tooltip")
-  .style("opacity", 0);
-
-node.on("mouseover", (event, d) => {
-  tooltip.transition()
-    .duration(200)
-    .style("opacity", .9);
-  tooltip.html(d.id)
-    .style("left", (event.pageX + 10) + "px")
-    .style("top", (event.pageY - 28) + "px");
-})
-.on("mouseout", () => {
-  tooltip.transition()
-    .duration(500)
-    .style("opacity", 0);
-});
-
-// Update positions
-simulation.on("tick", () => {
-  link
-    .attr("x1", d => d.source.x)
-    .attr("y1", d => d.source.y)
-    .attr("x2", d => d.target.x)
-    .attr("y2", d => d.target.y);
-
-  node
-    .attr("cx", d => d.x)
-    .attr("cy", d => d.y);
-
-  label
-    .attr("x", d => d.x)
-    .attr("y", d => d.y);
-});
+// Appeler la fonction une fois que le DOM est chargé
+document.addEventListener('DOMContentLoaded', createSEOGraph);
