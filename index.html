@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyril Wolfangel - AI & Digital Strategist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+        <!-- Autres balises head -->
+        <style>
+            /* Insérez ici les styles critiques */
+            body {
+                font-family: 'Roboto Mono', monospace;
+                line-height: 1.8;
+                color: #00FF00;
+                background-color: #000000;
+            }
+        </style>
+        <link rel="preload" href="/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+        <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" media="print" onload="this.media='all'">
+        <meta name="description" content="Cyril Wolfangel - AI-Powered Digital Transformation Specialist. Explore my portfolio showcasing expertise in SEO, web development, and digital strategy.">
+
+    
 </head>
 <body>
     <div id="code-rain"></div>
@@ -609,10 +628,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="script.js"></script>
-    <script src="seo-graph.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" async defer></script>
+    <script src="/script.js" async defer></script>
+    <script src="/seo-graph.js" async defer></script>
 
 </body>
 </html>
