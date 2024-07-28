@@ -548,58 +548,76 @@ footer {
 /* GitHub Projects Section */
 .github-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes fixes */
     gap: 1.5rem;
 }
 
 .github-repo {
-    background: rgba(0, 255, 255, 0.05);
+    background: rgba(0, 255, 0, 0.07); /* Fond vert foncé subtil */
     border-radius: 8px;
     padding: 1.5rem;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Assure que toutes les cartes ont la même hauteur */
 }
 
 .github-repo:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
 }
 
 .repo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .repo-name {
     font-size: 1.2rem;
-    color: var(--accent-color);
+    color: #00FFFF; /* Couleur cyan pour le titre */
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .repo-url {
     font-size: 0.8rem;
-    color: var(--text-color);
-    opacity: 0.7;
+    color: #00AA00; /* Vert plus doux pour l'URL */
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .repo-description {
     margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #00FF00; /* Vert vif pour la description */
+    flex-grow: 1; /* Permet à la description de prendre l'espace disponible */
 }
 
 .repo-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    margin-top: auto; /* Pousse les tags vers le bas de la carte */
 }
 
 .tag {
-    background: rgba(0, 255, 255, 0.1);
-    color: var(--accent-color);
+    background: rgba(0, 255, 0, 0.15);
+    color: #00FFFF;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     font-size: 0.8rem;
 }
 
+/* Responsive design pour les petits écrans */
+@media (max-width: 768px) {
+    .github-container {
+        grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
+    }
+}
 /* Footer Styles */
 footer {
     background-color: var(--header-bg);
