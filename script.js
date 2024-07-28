@@ -99,7 +99,7 @@ function animateTimeline() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                entry.target.style.transitionDelay = `${entry.target.dataset.year - 2015}00ms`;
+                entry.target.style.transitionDelay = `${entry.target.dataset.year - 2000}00ms`;
             } else {
                 entry.target.classList.remove('visible');
                 entry.target.style.transitionDelay = '0ms';
