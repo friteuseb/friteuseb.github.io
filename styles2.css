@@ -1,0 +1,230 @@
+/* Styles de base et variables */
+:root {
+    --bg-color: #000000;
+    --text-color: #00FF00;
+    --header-bg: #001a00;
+    --section-bg: linear-gradient(to bottom, #001a00, #000000);
+    --accent-color: #00FFFF;
+    --link-hover-color: #33FF33;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styles pour l'en-tête */
+header {
+    background-color: var(--header-bg);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.header-photo {
+    margin-right: 2rem;
+}
+
+.profile-photo {
+    max-width: 200px;
+    height: auto;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.header-text {
+    text-align: left;
+}
+
+/* Styles pour la navigation */
+nav ul {
+    list-style-type: none;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0.5rem 1rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: var(--link-hover-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Styles pour le chatbot */
+#chatbot-container {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+#chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+#user-input {
+    width: calc(100% - 100px);
+    padding: 0.5rem;
+    border: none;
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+#send-button {
+    width: 90px;
+    padding: 0.5rem;
+    border: none;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+
+/* Styles pour la timeline interactive */
+#timeline-container {
+    height: 400px;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour les compétences en 3D */
+#skills-3d-container {
+    height: 400px;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour le générateur de proposition de valeur */
+#generator-container {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+#value-prop-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+#value-prop-form button {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+
+#value-prop-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+/* Styles pour la visualisation de données */
+#data-viz-container {
+    height: 400px;
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour le Tech Lab */
+.tech-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tech-project {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.demo-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+    background: var(--link-hover-color);
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .header-photo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .header-text {
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 0.25rem 0;
+    }
+
+    .tech-projects {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Autres styles existants... */
