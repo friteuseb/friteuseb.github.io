@@ -577,7 +577,6 @@ footer {
     cursor: pointer;
     z-index: 1000;
 }
-
 /* GitHub Projects Section */
 
 .github-container {
@@ -595,7 +594,8 @@ footer {
     flex-direction: column;
     height: 100%; /* Assure que toutes les cartes ont la même hauteur */
     cursor: pointer; /* Indique que l'élément est cliquable */
-
+    word-wrap: break-word; /* Ajouté pour empêcher le dépassement de texte */
+    overflow-wrap: break-word; /* Ajouté pour empêcher le dépassement de texte */
 }
 
 .github-repo-link {
@@ -603,7 +603,6 @@ footer {
     color: inherit;
     display: contents; /* Ceci permet au lien de ne pas perturber la mise en page de la grille */
 }
-
 
 .github-repo:hover {
     transform: translateY(-5px);
@@ -626,7 +625,6 @@ footer {
 .github-repo:hover::after {
     opacity: 1;
 }
-
 
 .repo-header {
     margin-bottom: 0.5rem;
@@ -674,12 +672,20 @@ footer {
 }
 
 
+
 /* Responsive design pour les petits écrans */
 @media (max-width: 768px) {
     .github-container {
         grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
     }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
 }
+
+
 /* Footer Styles */
 footer {
     background-color: var(--header-bg);
