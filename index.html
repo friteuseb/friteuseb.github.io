@@ -33,7 +33,7 @@
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" media="print" onload="this.media='all'">
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script type="text/javascript" src="/vis-network.min.js"></script>
     
     <script>
         if ('fonts' in document) {
@@ -445,14 +445,16 @@
             </div>
             <div class="seo-visualization">
                 <h3>Topical Mesh Visualization</h3>
-                <div id="seoGraph"></div>
-                <div class="legend">
-                    <div class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span>Page principale</div>
-                    <div class="legend-item"><span class="legend-color" style="background-color: #00FFFF;"></span>Sous-catégories</div>
-                    <div class="legend-item"><span class="legend-color" style="background-color: #FF00FF;"></span>Articles</div>
-                    <div class="legend-item"><span class="legend-color" style="background-color: #FFFF00;"></span>Mots-clés</div>
+                <div class="graph-container">
+                    <div id="seoGraph"></div>
+                    <div class="legend">
+                        <div class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span>Page principale</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #00FFFF;"></span>Sous-catégories</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #FF00FF;"></span>Articles</div>
+                        <div class="legend-item"><span class="legend-color" style="background-color: #FFFF00;"></span>Mots-clés</div>
+                    </div>
                 </div>
-                
+                <p>This graph illustrates the structure of a topical mesh, demonstrating how pages are thematically linked to optimize SEO performance.</p>
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function() {
                         // Création des nœuds
@@ -541,7 +543,6 @@
                         var network = new vis.Network(container, data, options);
                     });
                 </script>
-                <p>This graph illustrates the structure of a topical mesh, demonstrating how pages are thematically linked to optimize SEO performance.</p>
             </div>
         </section>
 
