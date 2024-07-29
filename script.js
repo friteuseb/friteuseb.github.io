@@ -10,6 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFloatingContactButton();
 });
 
+
+function setupServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                console.log('ServiceWorker registration successful');
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+}
+
 function setupCodeRain() {
     const canvas = document.createElement('canvas');
     canvas.id = 'code-rain';
@@ -131,17 +144,7 @@ function setupLazyLoading() {
     }
 }
 
-function setupServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            }, function(err) {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }
-}
+
 
 function setupFloatingContactButton() {
     const contactButton = document.createElement('button');
