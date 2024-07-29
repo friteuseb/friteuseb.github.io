@@ -209,8 +209,8 @@ footer {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    height: 500px;
-    background-color: rgba(0, 0, 0, 0.2);
+    min-height: 400px;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -773,6 +773,7 @@ display: block;
     color: var(--bg-color);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
+
 
 
 

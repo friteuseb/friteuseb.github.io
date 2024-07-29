@@ -8,6 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupLazyLoading();
     setupServiceWorker();
     setupFloatingContactButton();
+    // Vérifier si D3.js est chargé
+    if (typeof d3 !== 'undefined') {
+        createSEOGraph();
+        } else {
+        // Attendre le chargement de D3.js
+        document.querySelector('script[src*="d3.v7.min.js"]').addEventListener('load', createSEOGraph);
+        }
 });
 
 
@@ -22,6 +29,7 @@ function setupServiceWorker() {
         });
     }
 }
+
 
 function setupCodeRain() {
     const canvas = document.createElement('canvas');
