@@ -185,6 +185,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+const quotes = [
+    "The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+    "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. - Christian D. Larson",
+    "The only place where success comes before work is in the dictionary. - Vidal Sassoon",
+    "Your time is limited, don’t waste it living someone else’s life. - Steve Jobs",
+    "Don’t give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale",
+    "Great things never come from comfort zones. - Unknown",
+    "It is not the mountain we conquer but ourselves. - Edmund Hillary",
+    "The only limits to our achievements of tomorrow are our doubts of today. - Franklin D. Roosevelt",
+    "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+    "Opportunities don't happen, you create them. - Chris Grosser",
+    "Believe in your dreams and they may come true; believe in yourself and they will come true. - Martin Luther King Jr.",
+    "Don't look back in anger, nor forward in fear, but around in awareness. - James Thurber",
+    "The only way to do great work is to love what you do. - Steve Jobs",
+    "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+    "The greatest pleasure in life is doing what people say you cannot do. - Walter Bagehot",
+    "Life is what happens when you're busy making other plans. - John Lennon",
+    "You are braver than you believe, stronger than you seem, and smarter than you think. - A. A. Milne",
+    "Success is going from failure to failure without losing your enthusiasm. - Winston Churchill",
+    "Happiness does not depend on what you have or who you are. It solely relies on what you think. - Buddha"
+];
+
+document.getElementById('generate-quote').addEventListener('click', function() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById('inspiring-quote').textContent = quotes[randomIndex];
+});
+
+
 
 window.onerror = function(message, source, lineno, colno, error) {
     console.error("An error occurred:", message, "at", source, ":", lineno);

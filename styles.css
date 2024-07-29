@@ -725,32 +725,27 @@ display: block;
     color: var(--accent-color);
 }
 
-.newsletter-form {
-    display: flex;
-    margin-top: 1rem;
-}
-
-.newsletter-form input {
-    flex-grow: 1;
-    padding: 0.5rem;
+.footer-section button {
+    background-color: #00FF00;
+    color: #000;
     border: none;
-    background-color: rgba(0, 255, 255, 0.1);
-    color: var(--text-color);
-}
-
-.newsletter-form button {
     padding: 0.5rem 1rem;
-    border: none;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+    font-size: 1rem;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-.newsletter-form button:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
+.footer-section button:hover {
+    background-color: #00AA00;
 }
+
+#inspiring-quote {
+    font-size: 1rem;
+    color: #00FF00;
+    margin-bottom: 1rem;
+}
+
 
 .footer-bottom {
     text-align: center;
