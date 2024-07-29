@@ -207,12 +207,27 @@ footer {
 
 #seoGraph {
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    min-height: 400px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
+    height: 600px;
+    border: 1px solid #00FF00;
+    background-color: rgba(0, 255, 0, 0.05);
+}
+.legend {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border: 1px solid #00FF00;
+}
+.legend-item {
+    margin-bottom: 5px;
+}
+.legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 

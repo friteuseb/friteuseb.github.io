@@ -3,18 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter("AI-Powered Digital Transformation Specialist", 0);
     setupSmoothScrolling();
     animateSkillBars();
-    createSEOGraph();
     animateTimeline();
     setupLazyLoading();
     setupServiceWorker();
     setupFloatingContactButton();
-    // Vérifier si D3.js est chargé
-    if (typeof d3 !== 'undefined') {
-        createSEOGraph();
-        } else {
-        // Attendre le chargement de D3.js
-        document.querySelector('script[src*="d3.v7.min.js"]').addEventListener('load', createSEOGraph);
-        }
 });
 
 

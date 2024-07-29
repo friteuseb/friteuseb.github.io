@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocon Sémantique - Style Matrix</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+        }
+        #seoGraph {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #00FF00;
+            background-color: rgba(0, 255, 0, 0.05);
+        }
+        .legend {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border: 1px solid #00FF00;
+        }
+        .legend-item {
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="seoGraph"></div>
+    <div class="legend">
+        <div class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span>Page principale</div>
+        <div class="legend-item"><span class="legend-color" style="background-color: #00FFFF;"></span>Sous-catégories</div>
+        <div class="legend-item"><span class="legend-color" style="background-color: #FF00FF;"></span>Articles</div>
+        <div class="legend-item"><span class="legend-color" style="background-color: #FFFF00;"></span>Mots-clés</div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Création des nœuds
+            var nodes = new vis.DataSet([
+                {id: 1, label: 'Page Principale\nSEO', group: 1, level: 0},
+                {id: 2, label: 'Stratégie SEO', group: 2, level: 1},
+                {id: 3, label: 'Techniques SEO', group: 2, level: 1},
+                {id: 4, label: 'Outils SEO', group: 2, level: 1},
+                {id: 5, label: 'Cocon Sémantique', group: 3, level: 2},
+                {id: 6, label: 'Optimisation On-Page', group: 3, level: 2},
+                {id: 7, label: 'Linkbuilding', group: 3, level: 2},
+                {id: 8, label: 'Analyse de Mots-clés', group: 3, level: 2},
+                {id: 9, label: 'Google Analytics', group: 3, level: 2},
+                {id: 10, label: 'SEMrush', group: 3, level: 2},
+                {id: 11, label: 'Mots-clés longue traîne', group: 4, level: 3},
+                {id: 12, label: 'Backlinks', group: 4, level: 3},
+                {id: 13, label: 'Balises Meta', group: 4, level: 3},
+                {id: 14, label: 'Structure de l\'URL', group: 4, level: 3}
+            ]);
+
+            // Création des liens
+            var edges = new vis.DataSet([
+                {from: 1, to: 2, arrows: 'to', color: {color: '#00FF00'}},
+                {from: 1, to: 3, arrows: 'to', color: {color: '#00FF00'}},
+                {from: 1, to: 4, arrows: 'to', color: {color: '#00FF00'}},
+                {from: 2, to: 5, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 2, to: 6, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 2, to: 7, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 3, to: 6, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 3, to: 8, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 4, to: 9, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 4, to: 10, arrows: 'to', color: {color: '#00FFFF'}},
+                {from: 5, to: 11, arrows: 'to', color: {color: '#FF00FF'}},
+                {from: 7, to: 12, arrows: 'to', color: {color: '#FF00FF'}},
+                {from: 6, to: 13, arrows: 'to', color: {color: '#FF00FF'}},
+                {from: 6, to: 14, arrows: 'to', color: {color: '#FF00FF'}},
+                {from: 8, to: 11, arrows: 'to', color: {color: '#FF00FF'}},
+                {from: 5, to: 2, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}},
+                {from: 7, to: 3, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}},
+                {from: 9, to: 1, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}}
+            ]);
+
+            // Configuration du graphe
+            var options = {
+                nodes: {
+                    shape: 'dot',
+                    size: 16,
+                    font: {
+                        color: '#00FF00',
+                        face: 'Courier New'
+                    },
+                    borderWidth: 2,
+                    shadow: true
+                },
+                edges: {
+                    width: 2,
+                    shadow: true
+                },
+                groups: {
+                    1: {color: {background: '#00FF00', border: '#00FF00'}},
+                    2: {color: {background: '#00FFFF', border: '#00FFFF'}},
+                    3: {color: {background: '#FF00FF', border: '#FF00FF'}},
+                    4: {color: {background: '#FFFF00', border: '#FFFF00'}}
+                },
+                layout: {
+                    hierarchical: {
+                        direction: 'UD',
+                        sortMethod: 'directed',
+                        nodeSpacing: 150,
+                        levelSeparation: 150
+                    }
+                },
+                physics: false,
+                interaction: {
+                    hover: true,
+                    zoomView: true
+                }
+            };
+
+            // Création du graphe
+            var container = document.getElementById('seoGraph');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var network = new vis.Network(container, data, options);
+
+            // Ajout d'un effet "Matrix" de fond
+            function matrixRain() {
+                var c = document.createElement('canvas');
+                var ctx = c.getContext('2d');
+                c.height = container.offsetHeight;
+                c.width = container.offsetWidth;
+                container.appendChild(c);
+
+                var matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+                matrix = matrix.split("");
+
+                var font_size = 10;
+                var columns = c.width/font_size;
+                var drops = [];
+                for(var x = 0; x < columns; x++)
+                    drops[x] = 1; 
+
+                function draw() {
+                    ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+                    ctx.fillRect(0, 0, c.width, c.height);
+
+                    ctx.fillStyle = "#00FF00";
+                    ctx.font = font_size + "px arial";
+                    for(var i = 0; i < drops.length; i++) {
+                        var text = matrix[Math.floor(Math.random()*matrix.length)];
+                        ctx.fillText(text, i*font_size, drops[i]*font_size);
+                        
+                        if(drops[i]*font_size > c.height && Math.random() > 0.975)
+                            drops[i] = 0;
+                        
+                        drops[i]++;
+                    }
+                }
+
+                setInterval(draw, 35);
+            }
+
+            matrixRain();
+        });
+    </script>
+</body>
+</html>

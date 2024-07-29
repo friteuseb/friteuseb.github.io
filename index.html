@@ -33,6 +33,7 @@
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" media="print" onload="this.media='all'">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     
     <script>
         if ('fonts' in document) {
@@ -445,6 +446,101 @@
             <div class="seo-visualization">
                 <h3>Topical Mesh Visualization</h3>
                 <div id="seoGraph"></div>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span>Page principale</div>
+                    <div class="legend-item"><span class="legend-color" style="background-color: #00FFFF;"></span>Sous-catégories</div>
+                    <div class="legend-item"><span class="legend-color" style="background-color: #FF00FF;"></span>Articles</div>
+                    <div class="legend-item"><span class="legend-color" style="background-color: #FFFF00;"></span>Mots-clés</div>
+                </div>
+                
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Création des nœuds
+                        var nodes = new vis.DataSet([
+                            {id: 1, label: 'Page Principale\nSEO', group: 1, level: 0},
+                            {id: 2, label: 'Stratégie SEO', group: 2, level: 1},
+                            {id: 3, label: 'Techniques SEO', group: 2, level: 1},
+                            {id: 4, label: 'Outils SEO', group: 2, level: 1},
+                            {id: 5, label: 'Cocon Sémantique', group: 3, level: 2},
+                            {id: 6, label: 'Optimisation On-Page', group: 3, level: 2},
+                            {id: 7, label: 'Linkbuilding', group: 3, level: 2},
+                            {id: 8, label: 'Analyse de Mots-clés', group: 3, level: 2},
+                            {id: 9, label: 'Google Analytics', group: 3, level: 2},
+                            {id: 10, label: 'SEMrush', group: 3, level: 2},
+                            {id: 11, label: 'Mots-clés longue traîne', group: 4, level: 3},
+                            {id: 12, label: 'Backlinks', group: 4, level: 3},
+                            {id: 13, label: 'Balises Meta', group: 4, level: 3},
+                            {id: 14, label: 'Structure de l\'URL', group: 4, level: 3}
+                        ]);
+                
+                        // Création des liens
+                        var edges = new vis.DataSet([
+                            {from: 1, to: 2, arrows: 'to', color: {color: '#00FF00'}},
+                            {from: 1, to: 3, arrows: 'to', color: {color: '#00FF00'}},
+                            {from: 1, to: 4, arrows: 'to', color: {color: '#00FF00'}},
+                            {from: 2, to: 5, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 2, to: 6, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 2, to: 7, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 3, to: 6, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 3, to: 8, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 4, to: 9, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 4, to: 10, arrows: 'to', color: {color: '#00FFFF'}},
+                            {from: 5, to: 11, arrows: 'to', color: {color: '#FF00FF'}},
+                            {from: 7, to: 12, arrows: 'to', color: {color: '#FF00FF'}},
+                            {from: 6, to: 13, arrows: 'to', color: {color: '#FF00FF'}},
+                            {from: 6, to: 14, arrows: 'to', color: {color: '#FF00FF'}},
+                            {from: 8, to: 11, arrows: 'to', color: {color: '#FF00FF'}},
+                            {from: 5, to: 2, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}},
+                            {from: 7, to: 3, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}},
+                            {from: 9, to: 1, arrows: 'from', dashes: true, color: {color: '#FFFFFF'}}
+                        ]);
+                
+                        // Configuration du graphe
+                        var options = {
+                            nodes: {
+                                shape: 'dot',
+                                size: 16,
+                                font: {
+                                    color: '#00FF00',
+                                    face: 'Courier New'
+                                },
+                                borderWidth: 2,
+                                shadow: true
+                            },
+                            edges: {
+                                width: 2,
+                                shadow: true
+                            },
+                            groups: {
+                                1: {color: {background: '#00FF00', border: '#00FF00'}},
+                                2: {color: {background: '#00FFFF', border: '#00FFFF'}},
+                                3: {color: {background: '#FF00FF', border: '#FF00FF'}},
+                                4: {color: {background: '#FFFF00', border: '#FFFF00'}}
+                            },
+                            layout: {
+                                hierarchical: {
+                                    direction: 'UD',
+                                    sortMethod: 'directed',
+                                    nodeSpacing: 150,
+                                    levelSeparation: 150
+                                }
+                            },
+                            physics: false,
+                            interaction: {
+                                hover: true,
+                                zoomView: true
+                            }
+                        };
+                
+                        // Création du graphe
+                        var container = document.getElementById('seoGraph');
+                        var data = {
+                            nodes: nodes,
+                            edges: edges
+                        };
+                        var network = new vis.Network(container, data, options);
+                    });
+                </script>
                 <p>This graph illustrates the structure of a topical mesh, demonstrating how pages are thematically linked to optimize SEO performance.</p>
             </div>
         </section>
@@ -648,10 +744,8 @@
         </div>
     </footer>
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="/script.js" defer></script>
-    <script src="/seo-graph.js" defer></script>
 
 </body>
 </html>
