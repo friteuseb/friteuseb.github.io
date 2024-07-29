@@ -97,6 +97,11 @@ nav ul li a:hover {
     text-shadow: 0 0 10px var(--accent-color);
 }
 
+
+#menu-toggle {
+    display: none;
+}
+
 main {
     max-width: 1000px;
     margin: 0 auto;
@@ -477,6 +482,9 @@ footer {
     .tagline {
         font-size: 0.9rem;
     }
+    #menu-toggle {
+        display: block;
+    }
 
      /* Bouton du menu burger */
      #menu-toggle {
@@ -564,19 +572,6 @@ footer {
 }
 
 
-/* Floating Contact Button */
-#floating-contact {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-}
 /* GitHub Projects Section */
 
 .github-container {

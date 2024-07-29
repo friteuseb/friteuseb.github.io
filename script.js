@@ -146,20 +146,6 @@ function setupLazyLoading() {
 
 
 
-function setupFloatingContactButton() {
-    const contactButton = document.createElement('button');
-    contactButton.innerHTML = 'Contact';
-    contactButton.id = 'floating-contact';
-    contactButton.onclick = openContactForm;
-    document.body.appendChild(contactButton);
-}
-
-function openContactForm() {
-    // Code pour ouvrir le formulaire de contact
-    console.log("Ouverture du formulaire de contact");
-    // Ici, vous pouvez ajouter le code pour afficher votre formulaire de contact
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
