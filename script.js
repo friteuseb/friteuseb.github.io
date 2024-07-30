@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFloatingContactButton();
 });
 
-
+/* desactivé pour le moment
 function setupServiceWorker() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -21,7 +21,7 @@ function setupServiceWorker() {
         });
     }
 }
-
+*/
 
 function setupCodeRain() {
     const canvas = document.createElement('canvas');
