@@ -7,6 +7,10 @@
     --link-hover-color: #33FF33;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +23,11 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: background-color 0.3s, color 0.3s;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 body::before {
@@ -218,6 +227,7 @@ footer {
     position: relative;
     width: 100%;
     height: 600px; /* Ajustez selon vos besoins */
+    overflow: hidden; /* Pour contenir le graphique s'il déborde */
 }
 
 #seoGraph {
@@ -490,7 +500,7 @@ footer {
      #menu-toggle {
         display: block;
         position: absolute;
-        top: 1rem;
+        top: 2.2rem; /* Ajusté pour un meilleur alignement vertical avec le contenu du header */
         right: 1rem;
         z-index: 1000;
         background: none;
@@ -499,14 +509,18 @@ footer {
         padding: 0;
         width: 30px;
         height: 20px;
+        display: flex; /* Ajout pour Flexbox */
+        flex-direction: column; /* Aligner les barres verticalement */
+        justify-content: space-between; /* Distribuer l'espace */
     }
 
     #menu-toggle span {
         display: block;
+        height: 2px; /* Assurer une hauteur constante pour le calcul de space-between */
         width: 100%;
-        height: 2px;
+        /* height: 2px; est dupliqué, suppression d'une ligne */
         background-color: var(--text-color);
-        margin-bottom: 5px;
+        /* margin-bottom: 5px; n'est plus nécessaire avec flexbox space-between */
         transition: all 0.3s ease;
     }
 
@@ -569,6 +583,11 @@ footer {
     nav:not(#mobile-nav) {
         display: none;
     }
+
+    .cta-button {
+        padding: 0.8rem 1rem; /* Padding réduit pour mobile */
+        font-size: 0.9rem; /* Taille de police légèrement réduite si nécessaire */
+    }
 }
 
 
@@ -589,8 +608,6 @@ footer {
     flex-direction: column;
     height: 100%; /* Assure que toutes les cartes ont la même hauteur */
     cursor: pointer; /* Indique que l'élément est cliquable */
-    word-wrap: break-word; /* Ajouté pour empêcher le dépassement de texte */
-    overflow-wrap: break-word; /* Ajouté pour empêcher le dépassement de texte */
 }
 
 .github-repo-link {
@@ -639,9 +656,9 @@ footer {
     color: #00AA00; /* Vert plus doux pour l'URL */
     opacity: 0.8;
     margin-bottom: 1rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal; /* Permettre le retour à la ligne */
+    overflow-wrap: break-word; /* Césure des mots pour les URLs longues */
+    word-break: break-all; /* Alternative pour forcer la césure */
 }
 
 .repo-description {
@@ -649,6 +666,8 @@ footer {
     font-size: 0.9rem;
     color: #00FF00; /* Vert vif pour la description */
     flex-grow: 1; /* Permet à la description de prendre l'espace disponible */
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .repo-tags {
@@ -795,6 +814,7 @@ display: block;
     border-radius: 5px;
     font-weight: bold;
     transition: all 0.3s ease;
+    word-break: break-word; /* Pour éviter le débordement du texte */
 }
 
 .cta-button:hover {
