@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    typeWriter("AI-Powered Digital Transformation Specialist", 0);
+    // Only run typeWriter if tagline exists
+    const taglineElement = document.querySelector(".tagline");
+    if (taglineElement) {
+        typeWriter("AI-Powered Digital Transformation Specialist", 0);
+    }
+    
     setupSmoothScrolling();
     animateSkillBars();
     animateTimeline();
     setupLazyLoading();
-    setupServiceWorker();
-    setupFloatingContactButton();
+    setupStickyNavigation();
 });
 
 /* desactivé pour le moment
@@ -24,8 +28,9 @@ function setupServiceWorker() {
 
 
 function typeWriter(text, i, fnCallback) {
-    if (i < text.length) {
-        document.querySelector(".tagline").innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
+    const taglineElement = document.querySelector(".tagline");
+    if (taglineElement && i < text.length) {
+        taglineElement.innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
         setTimeout(() => typeWriter(text, i + 1, fnCallback), 100);
     } else if (typeof fnCallback == 'function') {
         setTimeout(fnCallback, 700);
@@ -149,12 +154,109 @@ const quotes = [
     "Happiness does not depend on what you have or who you are. It solely relies on what you think. - Buddha"
 ];
 
-document.getElementById('generate-quote').addEventListener('click', function() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    document.getElementById('inspiring-quote').textContent = quotes[randomIndex];
-});
+// Generate quote functionality (only if elements exist)
+const generateQuoteBtn = document.getElementById('generate-quote');
+const inspiringQuote = document.getElementById('inspiring-quote');
 
+if (generateQuoteBtn && inspiringQuote) {
+    generateQuoteBtn.addEventListener('click', function() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        inspiringQuote.textContent = quotes[randomIndex];
+    });
+}
 
+// Sticky Navigation Setup
+function setupStickyNavigation() {
+    const stickyNav = document.getElementById('sticky-nav');
+    const header = document.querySelector('header');
+    const stickyMenuToggle = document.getElementById('sticky-menu-toggle');
+    const stickyNavLinks = document.querySelector('.sticky-nav-links');
+    const stickyNavLinksItems = document.querySelectorAll('.sticky-nav-links a');
+    const stickyLogo = document.querySelector('.sticky-logo span');
+    
+    if (!stickyNav || !header) return;
+    
+    let headerHeight = header.offsetHeight;
+    let lastScrollTop = 0;
+    
+    // Show/hide sticky nav on scroll
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > headerHeight + 100) {
+            stickyNav.classList.add('visible');
+        } else {
+            stickyNav.classList.remove('visible');
+            // Close mobile menu when hiding sticky nav
+            stickyNavLinks.classList.remove('active');
+            stickyMenuToggle.classList.remove('active');
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+    
+    // Mobile menu toggle for sticky nav
+    if (stickyMenuToggle && stickyNavLinks) {
+        stickyMenuToggle.addEventListener('click', () => {
+            stickyNavLinks.classList.toggle('active');
+            stickyMenuToggle.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    stickyNavLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            stickyNavLinks.classList.remove('active');
+            stickyMenuToggle.classList.remove('active');
+        });
+    });
+    
+    // Scroll to top when clicking on logo
+    if (stickyLogo) {
+        stickyLogo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            stickyNavLinks.classList.remove('active');
+            stickyMenuToggle.classList.remove('active');
+        });
+    }
+    
+    // Active section highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sticky-nav-links a');
+    
+    function updateActiveLink() {
+        let current = '';
+        const scrollPos = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink(); // Initial call
+    
+    // Update header height on resize
+    window.addEventListener('resize', () => {
+        headerHeight = header.offsetHeight;
+    });
+}
 
 window.onerror = function(message, source, lineno, colno, error) {
     console.error("An error occurred:", message, "at", source, ":", lineno);
