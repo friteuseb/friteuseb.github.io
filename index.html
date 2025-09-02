@@ -612,134 +612,236 @@
                     </ul>
                 </div>
             </div>
-            <div class="seo-visualization">
-                <h3>Topical Mesh Visualization</h3>
-                <div class="graph-container">
-                    <div id="seoGraph"></div>
-                    <div class="legend">
-                        <div class="legend-item"><span class="legend-color" style="background-color: #fb923c;"></span>Page principale</div>
-                        <div class="legend-item"><span class="legend-color" style="background-color: #f97316;"></span>Sous-catégories</div>
-                        <div class="legend-item"><span class="legend-color" style="background-color: #ea580c;"></span>Articles</div>
-                        <div class="legend-item"><span class="legend-color" style="background-color: #c2410c;"></span>Mots-clés</div>
+            <div class="atlas-section">
+                <div class="atlas-header">
+                    <h3>Drive more revenue on e-commerce sites & generate more leads on corporate websites</h3>
+                    <p class="atlas-subtitle">How our proprietary algorithms transform your sites into traffic and conversion machines</p>
+                </div>
+                
+                <div class="innovation-box">
+                    <h4>Our Innovation: ATLAS Algorithms (TALAN Research Center)</h4>
+                    <p class="innovation-description">
+                        <strong>Our artificial intelligence algorithms</strong> automatically analyze your content's semantics and create optimal links between articles and products. <strong>Result: more traffic, more conversions, more revenue.</strong>
+                    </p>
+                </div>
+                
+                <div class="comparison-container">
+                    <div class="graph-section before">
+                        <h4>❌ Before: Disconnected Mesh</h4>
+                        <div class="graph-container" id="graphBefore"></div>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #dc3545;"></span>
+                                Blog Articles
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ffc107;"></span>
+                                Products
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #6c757d;"></span>
+                                Rare Links
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-section">
+                        <div class="arrow">→</div>
+                        <div class="arrow-text"><strong>ATLAS<br>Algorithm</strong></div>
+                    </div>
+                    
+                    <div class="graph-section after">
+                        <h4>✅ After: Optimized Mesh</h4>
+                        <div class="graph-container" id="graphAfter"></div>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #28a745;"></span>
+                                Connected Articles
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #17a2b8;"></span>
+                                Linked Products
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #007bff;"></span>
+                                Smart Links
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p>This graph illustrates the structure of a topical mesh, demonstrating how pages are thematically linked to optimize SEO performance.</p>
+                
+                <div class="metrics-comparison">
+                    <div class="metric-card">
+                        <span class="metric-before">12%</span>
+                        <span class="metric-after">+67%</span>
+                        <div class="metric-label">Page Views per Session</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-before">2m 15s</span>
+                        <span class="metric-after">+4m 38s</span>
+                        <div class="metric-label">Average Time on Site</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-before">2.3%</span>
+                        <span class="metric-after">+5.8%</span>
+                        <div class="metric-label">Conversion Rate</div>
+                    </div>
+                </div>
+                
+                <div class="principle-box">
+                    <p class="principle-text">
+                        <strong>The principle is simple:</strong> More relevant links = More page views = More conversions = More revenue. Our algorithms create these links automatically, where your competitors miss them.
+                    </p>
+                </div>
+                
+                <div class="atlas-cta-section">
+                    <div class="atlas-cta-header">
+                        <h4>Ready to transform your website performance?</h4>
+                    </div>
+                    <p class="atlas-cta-text">
+                        Let's discuss how ATLAS algorithms can boost your revenue and lead generation. Get a free consultation and see the potential impact on your business.
+                    </p>
+                    <div class="atlas-cta-buttons">
+                        <a href="#contact" class="atlas-cta-btn primary">
+                            <i class="fas fa-comments"></i>
+                            Start a conversation
+                        </a>
+                        <a href="mailto:cyril.wolfangel@talan.com" class="atlas-cta-btn secondary">
+                            <i class="fas fa-envelope"></i>
+                            Send an email
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                   
-    <script type="text/javascript">
-        // Fonction pour créer le graphique (sera appelée une fois vis.js chargé)
-        function createSEOGraph() {
+<script>
+// Configuration for graphs
+const commonOptions = {
+    nodes: {
+        font: { 
+            size: 11, 
+            color: 'white',
+            strokeWidth: 1,
+            strokeColor: 'black'
+        },
+        borderWidth: 2,
+        shadow: {
+            enabled: true,
+            color: 'rgba(0,0,0,0.2)',
+            size: 5,
+            x: 2,
+            y: 2
+        },
+        size: 22
+    },
+    edges: {
+        width: 2,
+        shadow: {
+            enabled: true,
+            color: 'rgba(0,0,0,0.1)',
+            size: 3,
+            x: 1,
+            y: 1
+        },
+        smooth: {
+            type: 'continuous',
+            roundness: 0.2
+        }
+    },
+    layout: {
+        randomSeed: 42,
+        improvedLayout: false,
+        hierarchical: false
+    },
+    physics: {
+        enabled: true,
+        stabilization: { iterations: 200 },
+        barnesHut: { 
+            gravitationalConstant: -3000, 
+            centralGravity: 0.1,
+            springLength: 80,
+            springConstant: 0.05,
+            damping: 0.09
+        }
+    },
+    interaction: {
+        hover: true,
+        zoomView: false,
+        dragView: false,
+        selectConnectedEdges: false
+    }
+};
 
-                        // Création des nœuds
-                        var nodes = new vis.DataSet([
-                            {id: 1, label: 'Page Principale\nSEO', group: 1, level: 0},
-                            {id: 2, label: 'Stratégie SEO', group: 2, level: 1},
-                            {id: 3, label: 'Techniques SEO', group: 2, level: 1},
-                            {id: 4, label: 'Outils SEO', group: 2, level: 1},
-                            {id: 5, label: 'Cocon Sémantique', group: 3, level: 2},
-                            {id: 6, label: 'Optimisation On-Page', group: 3, level: 2},
-                            {id: 7, label: 'Linkbuilding', group: 3, level: 2},
-                            {id: 8, label: 'Analyse de Mots-clés', group: 3, level: 2},
-                            {id: 9, label: 'Google Analytics', group: 3, level: 2},
-                            {id: 10, label: 'SEMrush', group: 3, level: 2},
-                            {id: 11, label: 'Mots-clés longue traîne', group: 4, level: 3},
-                            {id: 12, label: 'Backlinks', group: 4, level: 3},
-                            {id: 13, label: 'Balises Meta', group: 4, level: 3},
-                            {id: 14, label: 'Structure de l\'URL', group: 4, level: 3}
-                        ]);
-                
-                        // Création des liens
-                        var edges = new vis.DataSet([
-                            {from: 1, to: 2, arrows: 'to', color: {color: '#fb923c'}},
-                            {from: 1, to: 3, arrows: 'to', color: {color: '#fb923c'}},
-                            {from: 1, to: 4, arrows: 'to', color: {color: '#fb923c'}},
-                            {from: 2, to: 5, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 2, to: 6, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 2, to: 7, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 3, to: 6, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 3, to: 8, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 4, to: 9, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 4, to: 10, arrows: 'to', color: {color: '#f97316'}},
-                            {from: 5, to: 11, arrows: 'to', color: {color: '#ea580c'}},
-                            {from: 7, to: 12, arrows: 'to', color: {color: '#ea580c'}},
-                            {from: 6, to: 13, arrows: 'to', color: {color: '#ea580c'}},
-                            {from: 6, to: 14, arrows: 'to', color: {color: '#ea580c'}},
-                            {from: 8, to: 11, arrows: 'to', color: {color: '#ea580c'}},
-                            {from: 5, to: 2, arrows: 'from', dashes: true, color: {color: '#6b7280'}},
-                            {from: 7, to: 3, arrows: 'from', dashes: true, color: {color: '#6b7280'}},
-                            {from: 9, to: 1, arrows: 'from', dashes: true, color: {color: '#6b7280'}}
-                        ]);
-                
-                        // Configuration du graphe
-                        var options = {
-                            nodes: {
-                                shape: 'dot',
-                                size: 16,
-                                font: {
-                                    color: '#1f2937',
-                                    face: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif'
-                                },
-                                borderWidth: 2,
-                                shadow: true
-                            },
-                            edges: {
-                                width: 2,
-                                shadow: true
-                            },
-                            groups: {
-                                1: {color: {background: '#fb923c', border: '#fb923c'}},
-                                2: {color: {background: '#f97316', border: '#f97316'}},
-                                3: {color: {background: '#ea580c', border: '#ea580c'}},
-                                4: {color: {background: '#c2410c', border: '#c2410c'}}
-                            },
-                            layout: {
-                                hierarchical: {
-                                    direction: 'UD',
-                                    sortMethod: 'directed',
-                                    nodeSpacing: 150,
-                                    levelSeparation: 150
-                                }
-                            },
-                            physics: false,
-                            interaction: {
-                                hover: true,
-                                zoomView: true
-                            }
-                        };
-                
-                        // Création du graphe
-                        var container = document.getElementById('seoGraph');
-                        var data = {
-                            nodes: nodes,
-                            edges: edges
-                        };
-                        var network = new vis.Network(container, data, options);
-        }
-    
-        // Fonction pour charger vis.js de manière conditionnelle
-        function loadVisJS() {
-            var script = document.createElement('script');
-            script.src = '/vis-network.min.js'; // Assurez-vous que ce chemin est correct
-            script.onload = createSEOGraph; // Appelle createSEOGraph une fois vis.js chargé
-            document.body.appendChild(script);
-        }
-    
-        // Utilisation de l'Intersection Observer pour le chargement conditionnel
-        document.addEventListener('DOMContentLoaded', function() {
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        loadVisJS();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {rootMargin: '100px'});
-    
-            var seoGraph = document.getElementById('seoGraph');
-            if (seoGraph) {
-                observer.observe(seoGraph);
+// Before Graph - Disconnected and poor mesh
+function createBeforeGraph() {
+    const nodes = new vis.DataSet([
+        { id: 1, label: 'Article:\n"Beauty Guide"', color: { background: '#dc3545', border: '#c82333' }, x: -150, y: -80 },
+        { id: 2, label: 'Article:\n"Skin Tips"', color: { background: '#dc3545', border: '#c82333' }, x: -80, y: 90 },
+        { id: 3, label: 'Article:\n"Trends"', color: { background: '#dc3545', border: '#c82333' }, x: 20, y: -40 },
+        { id: 4, label: 'Product:\nFace Cream', color: { background: '#ffc107', border: '#e0a800' }, x: 120, y: -70 },
+        { id: 5, label: 'Product:\nSerum', color: { background: '#ffc107', border: '#e0a800' }, x: 150, y: 60 },
+        { id: 6, label: 'Product:\nCleanser', color: { background: '#ffc107', border: '#e0a800' }, x: 80, y: 110 }
+    ]);
+
+    const edges = new vis.DataSet([
+        { from: 1, to: 4, color: { color: '#6c757d', opacity: 0.7 }, width: 1, dashes: [5,5] },
+        { from: 3, to: 5, color: { color: '#6c757d', opacity: 0.7 }, width: 1, dashes: [5,5] }
+    ]);
+
+    const container = document.getElementById('graphBefore');
+    if (container) {
+        new vis.Network(container, { nodes, edges }, commonOptions);
+    }
+}
+
+// After Graph - Optimized and rich mesh
+function createAfterGraph() {
+    const nodes = new vis.DataSet([
+        { id: 1, label: 'Article:\n"Beauty Guide"', color: { background: '#28a745', border: '#1e7e34' }, x: -150, y: -80 },
+        { id: 2, label: 'Article:\n"Skin Tips"', color: { background: '#28a745', border: '#1e7e34' }, x: -80, y: 90 },
+        { id: 3, label: 'Article:\n"Trends"', color: { background: '#28a745', border: '#1e7e34' }, x: 20, y: -40 },
+        { id: 4, label: 'Product:\nFace Cream', color: { background: '#17a2b8', border: '#138496' }, x: 120, y: -70 },
+        { id: 5, label: 'Product:\nSerum', color: { background: '#17a2b8', border: '#138496' }, x: 150, y: 60 },
+        { id: 6, label: 'Product:\nCleanser', color: { background: '#17a2b8', border: '#138496' }, x: 80, y: 110 }
+    ]);
+
+    const edges = new vis.DataSet([
+        { from: 1, to: 4, color: { color: '#007bff' }, width: 4 },
+        { from: 1, to: 6, color: { color: '#007bff' }, width: 3 },
+        { from: 2, to: 4, color: { color: '#007bff' }, width: 4 },
+        { from: 2, to: 5, color: { color: '#007bff' }, width: 3 },
+        { from: 3, to: 5, color: { color: '#007bff' }, width: 4 },
+        { from: 1, to: 2, color: { color: '#007bff' }, width: 3 },
+        { from: 1, to: 3, color: { color: '#007bff' }, width: 2 },
+        { from: 4, to: 5, color: { color: '#007bff' }, width: 3 },
+        { from: 4, to: 6, color: { color: '#007bff' }, width: 2 },
+        { from: 2, to: 6, color: { color: '#007bff' }, width: 2 }
+    ]);
+
+    const container = document.getElementById('graphAfter');
+    if (container) {
+        new vis.Network(container, { nodes, edges }, commonOptions);
+    }
+}
+
+// Initialize graphs when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Use intersection observer to load graphs when visible
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                createBeforeGraph();
+                createAfterGraph();
+                observer.unobserve(entry.target);
             }
         });
+    }, {rootMargin: '100px'});
+
+    const atlasSection = document.querySelector('.atlas-section');
+    if (atlasSection) {
+        observer.observe(atlasSection);
+    }
+});
 </script>
             </div>
         </section>
