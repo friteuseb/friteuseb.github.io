@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    setupCodeRain();
     typeWriter("AI-Powered Digital Transformation Specialist", 0);
     setupSmoothScrolling();
     animateSkillBars();
@@ -23,50 +22,6 @@ function setupServiceWorker() {
 }
 */
 
-function setupCodeRain() {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'code-rain';
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const fontSize = 15;
-    const columns = Math.floor(canvas.width / fontSize);
-    let drops = Array(columns).fill(1);
-
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00FF00';
-        ctx.font = `${fontSize}px monospace`;
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = characters[Math.floor(Math.random() * characters.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    function animate() {
-        draw();
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
 
 function typeWriter(text, i, fnCallback) {
     if (i < text.length) {
