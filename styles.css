@@ -460,6 +460,10 @@
     text-align: center;
 }
 
+.contact-professional h2 {
+    color: white;
+}
+
 .contact-intro {
     max-width: 700px;
     margin: 0 auto 50px auto;
@@ -1393,7 +1397,8 @@ footer {
 
     #mobile-nav a:hover,
     #mobile-nav a:focus {
-        background-color: rgba(0, 255, 0, 0.1);
+        background-color: rgba(251, 146, 60, 0.1);
+        color: var(--accent-color);
     }
 
     /* Masquer la navigation desktop sur mobile */
