@@ -2349,6 +2349,81 @@ display: block;
     font-weight: bold;
 }
 
+
+.references-summary {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.references-summary h3 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.summary-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--accent-color);
+}
+
+.summary-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+}
+
+.summary-label {
+    color: #495057;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sector-expertise {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.sector-expertise h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.sector-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.sector-tag {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent-color);
+    transition: transform 0.2s ease;
+}
+
+.sector-tag:hover {
+    transform: scale(1.05);
+}
+
 /* Responsive adjustments for enhanced timeline */
 @media (max-width: 768px) {
     .client-grid {
