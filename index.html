@@ -1395,25 +1395,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="/script.js" defer></script>
+    
 <script src="https://avatar.coconweb.fr/widget.js"></script>
 <script>
 window.cyrilWidgetConfig = {
-    position: 'bottom-right', // bottom-right, bottom-left, custom
-    theme: 'light' // light, dark
+    position: 'bottom-right',
+    theme: 'light'
 };
-</script>
-  <script>
-  console.log('Test widget:', window.CyrilAvatarWidget);
-  if (window.CyrilAvatarWidget) {
-      console.log('Création du widget...');
-      window.addEventListener('DOMContentLoaded', function() {
-          new window.CyrilAvatarWidget(window.cyrilWidgetConfig);
-      });
-  }
-  </script>
-  <script>
-console.log('Domaine détecté:', window.location.hostname);
-console.log('URL complète:', window.location.href);
+
+console.log('🔍 Debug détaillé du widget:');
+console.log('1. Classe disponible:', typeof window.CyrilAvatarWidget);
+console.log('2. Configuration:', window.cyrilWidgetConfig);
+
+// Override temporaire pour debug
+if (window.CyrilAvatarWidget) {
+    const OriginalWidget = window.CyrilAvatarWidget;
+    
+    window.CyrilAvatarWidget = function(options) {
+        console.log('3. Constructeur appelé avec:', options);
+        
+        try {
+            console.log('4. Vérification domaine...');
+            const domain = window.location.hostname;
+            console.log('5. Domaine détecté:', domain);
+            
+            // Appel du constructeur original
+            return new OriginalWidget(options);
+        } catch (error) {
+            console.error('6. ❌ Erreur dans le constructeur:', error);
+            console.error('Stack trace:', error.stack);
+        }
+    };
+    
+    // Copier le prototype
+    window.CyrilAvatarWidget.prototype = OriginalWidget.prototype;
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    console.log('7. DOM chargé, création du widget...');
+    try {
+        const widget = new window.CyrilAvatarWidget(window.cyrilWidgetConfig);
+        console.log('8. ✅ Widget créé:', widget);
+        
+        // Vérifier si le container existe
+        setTimeout(() => {
+            const container = document.getElementById('cyril-avatar-widget');
+            console.log('9. Container trouvé:', container);
+            if (container) {
+                console.log('10. Styles du container:', window.getComputedStyle(container));
+            }
+        }, 1000);
+        
+    } catch (error) {
+        console.error('8. ❌ Erreur lors de la création:', error);
+    }
+});
 </script>
 
 
