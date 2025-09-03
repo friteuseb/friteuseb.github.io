@@ -1993,11 +1993,11 @@ display: block;
     
     .expert-experience .timeline-item {
         flex-direction: column;
-        margin-left: 40px;
+        margin-left: 50px;
     }
     
     .expert-experience .timeline-item::before {
-        left: 12px !important;
+        left: 12px;
     }
     
     .timeline-date {
@@ -2145,6 +2145,260 @@ display: block;
     
     .innovation-box, .principle-box {
         padding: 20px;
+    }
+}
+
+/* Enhanced Timeline Styles for Professional Journey */
+/* Timeline item specific styling */
+.timeline-item.foundation .timeline-content {
+    background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, #ffffff 100%);
+    border-left: 4px solid #8e44ad;
+}
+
+.timeline-item.foundation::before {
+    background: #8e44ad;
+    box-shadow: 0 0 0 2px #8e44ad;
+}
+
+/* Role evolution styling */
+.role-evolution {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.role-period {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.role-period h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.role-period ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.role-period li {
+    margin-bottom: 5px;
+    color: #495057;
+    font-size: 14px;
+}
+
+/* Major projects styling */
+.major-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.project-highlight {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #17a2b8;
+}
+
+.project-highlight h4 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.project-highlight p {
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+.project-scope {
+    font-size: 14px;
+    color: #6c757d;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.client-project {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #495057;
+}
+
+/* Expertise evolution */
+.expertise-evolution {
+    background: #e8f5e8;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #28a745;
+    margin-top: 15px;
+}
+
+.expertise-evolution h4 {
+    color: #155724;
+    margin-bottom: 10px;
+}
+
+/* Transition and skill transfer */
+.transition-note, .skill-transfer {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #ffc107;
+    margin: 15px 0;
+}
+
+.skill-transfer h4 {
+    color: #856404;
+    margin-bottom: 10px;
+}
+
+/* Foundational skills */
+.foundational-skills {
+    background: #e7e3ff;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #8e44ad;
+    margin: 15px 0;
+}
+
+.foundational-skills h4 {
+    color: #6f42c1;
+    margin-bottom: 15px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.skill-connection {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.skill-connection strong {
+    color: #8e44ad;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.skill-connection p {
+    font-size: 12px;
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Achievement badges by category */
+.achievement.current {
+    background: var(--accent-color);
+}
+
+.achievement.tech {
+    background: #17a2b8;
+}
+
+.achievement.consulting {
+    background: #6c757d;
+}
+
+.achievement.media {
+    background: #dc3545;
+}
+
+.achievement.foundation {
+    background: #8e44ad;
+}
+
+/* Career synthesis */
+.career-synthesis {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 50px;
+    text-align: center;
+    border-left: 4px solid var(--accent-color);
+}
+
+.career-synthesis h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.career-synthesis p {
+    color: #495057;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.evolution-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.evolution-step {
+    background: var(--accent-color);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.evolution-arrow {
+    color: var(--accent-color);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for enhanced timeline */
+@media (max-width: 768px) {
+    .client-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .evolution-flow {
+        flex-direction: column;
+    }
+    
+    .evolution-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .role-evolution {
+        gap: 15px;
+    }
+    
+    .major-projects {
+        gap: 20px;
     }
     
     .graph-section {
