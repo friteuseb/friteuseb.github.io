@@ -11,40 +11,20 @@ Ce projet utilise un système de build automatisé qui vous permet d'éditer fac
 ├── script.js               # 📝 JS source (vous éditez ici)
 ├── index.html              # 📝 HTML principal
 ├── build-system.js         # ⚙️ Système de build
-├── dev.sh                  # 🔧 Scripts de développement
 ├── package.json            # 📦 Configuration npm
 └── styles.{hash}.css       # ⚡ CSS optimisé (généré auto)
 └── script.{hash}.js        # ⚡ JS optimisé (généré auto)
 ```
 
-## 🛠 Commandes disponibles
+## 🛠 Commandes principales
 
-### Option 1: Utilisation simple avec le script dev.sh
-
-```bash
-# Build une seule fois
-./dev.sh build
-
-# Mode développement (auto-rebuild quand vous sauvegardez)
-./dev.sh watch
-
-# Build + commit + push GitHub
-./dev.sh deploy
-
-# Nettoyer les fichiers générés
-./dev.sh clean
-
-# Voir l'état du projet
-./dev.sh status
-```
-
-### Option 2: Utilisation avec npm
+**Pour toutes vos modifications CSS/JS, utilisez simplement :**
 
 ```bash
-# Build optimisé
+# Build optimisé (après vos modifications CSS/JS)
 npm run build
 
-# Mode développement avec surveillance
+# Mode développement avec surveillance (rebuild auto à chaque sauvegarde)
 npm run dev
 
 # Build + déploiement GitHub
@@ -56,21 +36,21 @@ npm run deploy
 ### 1. **Édition quotidienne** (Recommandé)
 ```bash
 # Lancez le mode watch au début de votre session
-./dev.sh watch
+npm run dev
 ```
 
 Puis éditez normalement `styles.css` et `script.js`. Les fichiers optimisés se régénèrent automatiquement à chaque sauvegarde !
 
 ### 2. **Build ponctuel**
 ```bash
-# Quand vous voulez juste builder une fois
-./dev.sh build
+# Quand vous voulez juste builder une fois après vos modifications
+npm run build
 ```
 
 ### 3. **Déploiement**
 ```bash
 # Build + commit + push automatique
-./dev.sh deploy
+npm run deploy
 ```
 
 ## ✨ Fonctionnalités
@@ -96,35 +76,37 @@ Puis éditez normalement `styles.css` et `script.js`. Les fichiers optimisés se
 ### Scénario 1: Modifier un style CSS
 ```bash
 # 1. Lancez le mode watch
-./dev.sh watch
+npm run dev
 
 # 2. Éditez styles.css dans votre éditeur
 # 3. Sauvegardez → Le system rebuild automatiquement
 # 4. Vos changements sont prêts !
 ```
 
-### Scénario 2: Ajouter du JavaScript
+### Scénario 2: Modification ponctuelle
 ```bash
-# 1. Éditez script.js
+# 1. Éditez styles.css ou script.js
 # 2. Lancez un build
-./dev.sh build
+npm run build
 
 # 3. Testez localement
 # 4. Déployez quand vous êtes satisfait
-./dev.sh deploy
+npm run deploy
 ```
 
 ### Scénario 3: Déploiement rapide
 ```bash
 # Une seule commande fait tout !
-./dev.sh deploy
+npm run deploy
 ```
 
 ## 🐛 Dépannage
 
 ### Problème: "Command not found"
 ```bash
-chmod +x dev.sh build-system.js
+# Vérifiez que Node.js et npm sont installés
+node --version
+npm --version
 ```
 
 ### Problème: Fichiers non générés
@@ -132,9 +114,8 @@ chmod +x dev.sh build-system.js
 # Vérifiez que Node.js est installé
 node --version
 
-# Nettoyez et rebuildez
-./dev.sh clean
-./dev.sh build
+# Rebuildez simplement
+npm run build
 ```
 
 ### Problème: HTML non mis à jour
@@ -150,4 +131,12 @@ Les références dans `index.html` sont automatiquement mises à jour. Si ce n'e
 
 ---
 
-**💡 Conseil** : Utilisez `./dev.sh watch` pendant vos sessions de développement pour une expérience fluide !
+**💡 Conseil** : Utilisez `npm run dev` pendant vos sessions de développement pour une expérience fluide !
+
+## 📋 Résumé : Workflow Simplifié
+
+1. **Modifiez** `styles.css` ou `script.js` 
+2. **Buildez** avec `npm run build`
+3. **C'est tout !** Vos optimisations sont prêtes
+
+Pour développement continu : `npm run dev` (rebuild automatique)

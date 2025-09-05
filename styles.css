@@ -462,6 +462,52 @@
     color: #ecf0f1;
 }
 
+.avatar-cta-block {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    padding: 25px;
+    background: rgba(52, 152, 219, 0.1);
+    border: 2px solid rgba(52, 152, 219, 0.3);
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.avatar-icon {
+    font-size: 32px;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.avatar-cta-block h3 {
+    color: #3498db;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.avatar-cta-block p {
+    color: #bdc3c7;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.avatar-cta-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #95a5a6;
+    font-style: italic;
+}
+
+.avatar-cta-note i {
+    color: #3498db;
+    font-size: 16px;
+}
+
 .contact-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2082,6 +2128,26 @@ display: block;
     
     .contact-intro {
         font-size: 16px;
+    }
+    
+    .avatar-cta-block {
+        padding: 20px;
+        max-width: 90%;
+        margin: 0 auto 30px auto;
+    }
+    
+    .avatar-cta-block h3 {
+        font-size: 18px;
+    }
+    
+    .avatar-cta-block p {
+        font-size: 15px;
+    }
+    
+    .avatar-cta-note {
+        font-size: 13px;
+        flex-direction: column;
+        gap: 5px;
     }
     
     .availability-note {
