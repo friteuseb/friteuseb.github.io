@@ -1075,17 +1075,71 @@ footer {
     box-shadow: 0 1px 3px rgba(251, 146, 60, 0.3);
 }
 
-/* ATLAS Section Styles */
-.atlas-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 50px 20px;
-    border-radius: 12px;
+/* SEO Expertise Section - Full Width */
+.seo-expertise-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f8ff 100%);
+    border-left: 5px solid var(--accent-color);
     margin: 40px 0;
+    overflow: hidden;
 }
 
-.atlas-header {
+.seo-expertise-section .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.seo-expertise-section h2 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
     text-align: center;
-    margin-bottom: 40px;
+}
+
+.section-highlight {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* ATLAS Section Styles - Full Width */
+.atlas-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 60px 0;
+    margin: 0;
+}
+
+.atlas-section.full-width {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.atlas-section .atlas-header {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.atlas-section .atlas-header h3 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.atlas-section .atlas-subtitle {
+    color: #b8d4f0;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .atlas-header h3 {
@@ -1102,18 +1156,29 @@ footer {
     line-height: 1.6;
 }
 
-.innovation-box {
-    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
-    border-left: 5px solid #2196f3;
-    padding: 30px;
-    border-radius: 10px;
-    margin-bottom: 40px;
+.atlas-section .innovation-box {
+    background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid rgba(255,215,0,0.3);
+    padding: 35px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 1200px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(255,215,0,0.1);
 }
 
-.innovation-box h4 {
-    color: #1976d2;
-    font-size: 22px;
+.atlas-section .innovation-box h4 {
+    color: #ffffff;
+    font-size: 24px;
     margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.atlas-section .innovation-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .innovation-description {
@@ -1122,20 +1187,26 @@ footer {
     color: #2c3e50;
 }
 
-.comparison-container {
+.atlas-section .comparison-container {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
     margin: 40px 0;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
-.graph-section {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.atlas-section .graph-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .graph-section h4 {
@@ -1362,11 +1433,14 @@ footer {
     width: 100%;
 }
 
-.graph-container {
+.atlas-section .graph-container {
     position: relative;
     width: 100%;
-    height: 600px; /* Ajustez selon vos besoins */
-    overflow: hidden; /* Pour contenir le graphique s'il déborde */
+    height: 450px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+    border: 2px solid rgba(0,123,255,0.1);
 }
 
 #seoGraph {
@@ -2093,9 +2167,18 @@ display: block;
         font-size: 16px;
     }
     
-    .comparison-container {
+    .atlas-section .comparison-container {
         grid-template-columns: 1fr;
         gap: 30px;
+        padding: 0 15px;
+    }
+    
+    .atlas-section .graph-container {
+        height: 350px;
+    }
+    
+    .atlas-section .atlas-header h3 {
+        font-size: 1.8rem;
     }
     
     .arrow-section {
