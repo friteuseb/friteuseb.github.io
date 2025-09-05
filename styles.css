@@ -1075,13 +1075,32 @@ footer {
     box-shadow: 0 1px 3px rgba(251, 146, 60, 0.3);
 }
 
-/* ATLAS Section Styles - Just Full Width */
-.atlas-section.full-width {
+/* SEO Section Full Width */
+.seo-section-full-width {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     position: relative;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 50px 0;
+    padding: 40px 0;
+}
+
+.seo-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.seo-section-full-width h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+/* ATLAS Section within SEO (no longer needs full-width) */
+.atlas-section {
+    background: transparent;
+    padding: 40px 0 0 0;
+    margin: 0;
 }
 
 .atlas-section .atlas-header {
@@ -1149,13 +1168,12 @@ footer {
 .atlas-section .comparison-container {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 30px;
+    gap: 40px;
     align-items: center;
     margin: 40px 0;
-    max-width: 1400px;
+    max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 20px;
 }
 
 .atlas-section .graph-section {
@@ -1363,11 +1381,14 @@ footer {
 #seo {
 }
 
-.seo-container {
+.seo-section-full-width .seo-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .seo-overview, .seo-details, .seo-visualization {
@@ -2119,6 +2140,12 @@ display: block;
     
     .atlas-subtitle {
         font-size: 16px;
+    }
+    
+    .seo-section-full-width .seo-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 15px;
     }
     
     .atlas-section .comparison-container {
