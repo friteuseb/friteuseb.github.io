@@ -1086,6 +1086,11 @@ const commonOptions = {
 
 // Before Graph - Disconnected and poor mesh
 function createBeforeGraph() {
+    if (typeof vis === 'undefined') {
+        console.log('vis.js not loaded yet, retrying...');
+        setTimeout(createBeforeGraph, 100);
+        return;
+    }
     const nodes = new vis.DataSet([
         { id: 1, label: 'Article:\n"Beauty Guide"', color: { background: '#dc3545', border: '#c82333' }, x: -150, y: -80 },
         { id: 2, label: 'Article:\n"Skin Tips"', color: { background: '#dc3545', border: '#c82333' }, x: -80, y: 90 },
@@ -1108,6 +1113,11 @@ function createBeforeGraph() {
 
 // After Graph - Optimized and rich mesh
 function createAfterGraph() {
+    if (typeof vis === 'undefined') {
+        console.log('vis.js not loaded yet, retrying...');
+        setTimeout(createAfterGraph, 100);
+        return;
+    }
     const nodes = new vis.DataSet([
         { id: 1, label: 'Article:\n"Beauty Guide"', color: { background: '#28a745', border: '#1e7e34' }, x: -150, y: -80 },
         { id: 2, label: 'Article:\n"Skin Tips"', color: { background: '#28a745', border: '#1e7e34' }, x: -80, y: 90 },
@@ -1418,6 +1428,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!window.vis) {
                 const script = document.createElement('script');
                 script.src = '/vis-network.min.js';
+                script.onload = function() {
+                    console.log('vis.js loaded successfully');
+                    // Force initialization of graphs if they are visible
+                    if (document.getElementById('graphBefore') && document.getElementById('graphAfter')) {
+                        setTimeout(() => {
+                            if (window.createBeforeGraph) createBeforeGraph();
+                            if (window.createAfterGraph) createAfterGraph();
+                        }, 100);
+                    }
+                };
                 script.defer = true;
                 document.head.appendChild(script);
             }
@@ -1436,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         });
     </script>
-    <script src="/script.825fbdcaf552.js" defer></script>
+    <script src="/script.b27a7354e4b6.js" defer></script>
 <script>
 window.cyrilWidgetConfig = {
     position: 'bottom-right',
