@@ -1,0 +1,123 @@
+# Security Headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff
+    AddOutputFilterByType DEFLATE font/woff2
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+</IfModule>
+
+# Browser Caching - Extended cache durations for better performance
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # HTML files - 1 hour (frequent updates)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # CSS and JavaScript - 1 year (versioned files)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Images - 1 year
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Fonts - 1 year
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/truetype "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    
+    # Other assets - 1 month
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    
+    # Default - 1 hour
+    ExpiresDefault "access plus 1 hour"
+</IfModule>
+
+# Cache-Control headers with higher priority
+<IfModule mod_headers.c>
+    # Force long cache for static assets - use "always" to override server defaults
+    <FilesMatch "\.(css|js)$">
+        Header always set Cache-Control "max-age=31536000, public, immutable"
+        Header always set Expires ""
+        Header always unset Last-Modified
+        Header always unset ETag
+    </FilesMatch>
+    
+    <FilesMatch "\.(woff|woff2|eot|ttf|otf)$">
+        Header always set Cache-Control "max-age=31536000, public, immutable"
+        Header always set Expires ""
+    </FilesMatch>
+    
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$">
+        Header always set Cache-Control "max-age=31536000, public"
+        Header always set Expires ""
+    </FilesMatch>
+    
+    <FilesMatch "\.(html|htm)$">
+        Header always set Cache-Control "max-age=3600, public, must-revalidate"
+    </FilesMatch>
+    
+    # Specific files that need long cache
+    <Files "vis-network.min.js">
+        Header always set Cache-Control "max-age=31536000, public, immutable"
+        Header always set Expires ""
+    </Files>
+    
+    <Files "styles.css">
+        Header always set Cache-Control "max-age=31536000, public, immutable"
+        Header always set Expires ""
+    </Files>
+    
+    <Files "script.js">
+        Header always set Cache-Control "max-age=31536000, public, immutable"
+        Header always set Expires ""
+    </Files>
+    
+    # Preload critical resources
+    <FilesMatch "\.html$">
+        Header add Link "</styles.css>; rel=preload; as=style"
+        Header add Link "</script.js>; rel=preload; as=script"
+        Header add Link "<https://fonts.gstatic.com/s/robotomono/v23/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0mQ.woff2>; rel=preload; as=font; type=font/woff2; crossorigin"
+    </FilesMatch>
+</IfModule>
+
+# Enable ETags
+FileETag MTime Size
+
+# MIME Types for better compression and caching
+<IfModule mod_mime.c>
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/javascript .js
+    AddType text/css .css
+</IfModule>
