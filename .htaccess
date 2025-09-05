@@ -4,23 +4,39 @@ Header always set X-Frame-Options "SAMEORIGIN"
 Header always set X-XSS-Protection "1; mode=block"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-# Compression
+# Enhanced Compression
 <IfModule mod_deflate.c>
+    # Text files
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    
+    # Application files
     AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE application/xhtml+xml
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE application/atom+xml
+    
+    # Images and fonts
     AddOutputFilterByType DEFLATE image/svg+xml
     AddOutputFilterByType DEFLATE font/woff
     AddOutputFilterByType DEFLATE font/woff2
     AddOutputFilterByType DEFLATE application/font-woff
     AddOutputFilterByType DEFLATE application/font-woff2
+    AddOutputFilterByType DEFLATE font/truetype
+    AddOutputFilterByType DEFLATE font/opentype
+    
+    # Security: Disable compression for potentially sensitive files
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png|exe|t?gz|zip|bz2|sit|rar|pdf)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \
+        \.(?:pdf|mov|avi|mp3|mp4|rm)$ no-gzip dont-vary
 </IfModule>
 
 # Browser Caching - Extended cache durations for better performance
@@ -111,8 +127,29 @@ Header always set Referrer-Policy "strict-origin-when-cross-origin"
     </FilesMatch>
 </IfModule>
 
-# Enable ETags
-FileETag MTime Size
+# Optimize ETags - disable for immutable cached files, enable for others
+<FilesMatch "\.(css|js|woff|woff2|eot|ttf|otf|jpg|jpeg|png|gif|webp|avif|svg|ico)$">
+    FileETag None
+    Header always unset ETag
+</FilesMatch>
+
+# Enable ETags for dynamic content only
+<FilesMatch "\.(html|htm|php)$">
+    FileETag MTime Size
+</FilesMatch>
+
+# Performance optimizations
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Remove trailing slashes (prevents duplicate content)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ /$1 [R=301,L]
+    
+    # Force HTTPS (if needed - uncomment if you want to force HTTPS)
+    # RewriteCond %{HTTPS} !=on
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
 
 # MIME Types for better compression and caching
 <IfModule mod_mime.c>
@@ -120,4 +157,28 @@ FileETag MTime Size
     AddType font/woff2 .woff2
     AddType application/javascript .js
     AddType text/css .css
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType application/manifest+json .webmanifest
+    AddType application/x-web-app-manifest+json .webapp
+</IfModule>
+
+# Additional performance headers
+<IfModule mod_headers.c>
+    # Remove server signature for security
+    Header always unset Server
+    Header always unset X-Powered-By
+    
+    # DNS prefetch for external domains
+    <FilesMatch "\.(html|htm)$">
+        Header always set Link "<//cdn.jsdelivr.net>; rel=dns-prefetch" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+        Header always set Link "<//avatar.coconweb.fr>; rel=dns-prefetch" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+        Header always set Link "<//bff.ecoindex.fr>; rel=dns-prefetch" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+        Header always set Link "<//fonts.gstatic.com>; rel=dns-prefetch" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+    </FilesMatch>
+    
+    # Vary header for proper caching
+    <FilesMatch "\.(css|js|html)$">
+        Header always set Vary "Accept-Encoding"
+    </FilesMatch>
 </IfModule>
