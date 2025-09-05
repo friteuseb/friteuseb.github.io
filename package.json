@@ -1,0 +1,13 @@
+{
+  "name": "cyril-wolfangel-website",
+  "version": "1.0.0",
+  "description": "Personal website with automated build system",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build-system.js",
+    "dev": "node build-system.js --watch",
+    "deploy": "npm run build && git add . && git commit -m 'build: update optimized assets' && git push"
+  },
+  "keywords": ["website", "performance", "optimization"],
+  "author": "Cyril Wolfangel"
+}

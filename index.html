@@ -1452,11 +1452,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Load avatar widget after initial load
                 const avatarScript = document.createElement('script');
                 avatarScript.src = 'https://avatar.coconweb.fr/widget.js';
+                avatarScript.onload = function() {
+                    console.log('Avatar widget script loaded');
+                    // Initialiser le widget une fois le script chargé
+                    if (typeof window.CyrilAvatarWidget !== 'undefined') {
+                        initializeAvatarWidget();
+                    }
+                };
+                avatarScript.onerror = function() {
+                    console.error('Failed to load avatar widget script');
+                };
                 document.body.appendChild(avatarScript);
             }, 100);
         });
     </script>
-    <script src="/script.b27a7354e4b6.js" defer></script>
+    <script src="/script.34409f72034d.js" defer></script>
 <script>
 window.cyrilWidgetConfig = {
     position: 'bottom-right',
@@ -1491,24 +1501,39 @@ if (window.CyrilAvatarWidget) {
     window.CyrilAvatarWidget.prototype = OriginalWidget.prototype;
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-    console.log('7. DOM chargé, création du widget...');
+// Function to initialize avatar widget when script is loaded
+function initializeAvatarWidget() {
+    console.log('7. Initializing avatar widget...');
     try {
-        const widget = new window.CyrilAvatarWidget(window.cyrilWidgetConfig);
-        console.log('8. ✅ Widget créé:', widget);
+        if (typeof window.CyrilAvatarWidget === 'undefined') {
+            console.error('8. ❌ CyrilAvatarWidget not available');
+            return;
+        }
         
-        // Vérifier si le container existe
+        const widget = new window.CyrilAvatarWidget(window.cyrilWidgetConfig);
+        console.log('8. ✅ Widget created successfully:', widget);
+        
+        // Verify container creation
         setTimeout(() => {
             const container = document.getElementById('cyril-avatar-widget');
-            console.log('9. Container trouvé:', container);
+            console.log('9. Container found:', !!container);
             if (container) {
-                console.log('10. Styles du container:', window.getComputedStyle(container));
+                console.log('10. Container styles:', window.getComputedStyle(container));
             }
         }, 1000);
         
     } catch (error) {
-        console.error('8. ❌ Erreur lors de la création:', error);
+        console.error('8. ❌ Error during creation:', error);
     }
+}
+
+// Fallback: try to initialize on DOM ready if widget is already loaded
+window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        if (typeof window.CyrilAvatarWidget !== 'undefined') {
+            initializeAvatarWidget();
+        }
+    }, 200);
 });
 </script>
 
