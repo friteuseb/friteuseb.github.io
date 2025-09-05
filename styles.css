@@ -959,9 +959,7 @@ nav ul li a:hover::after {
 }
 
 main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 4rem 0;
 }
 
 section {
@@ -972,6 +970,14 @@ section {
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 8px var(--shadow-color);
     transition: box-shadow 0.2s ease;
+}
+
+/* Centered sections (all sections except SEO and contact which are full-width) */
+section:not(.seo-section-full-width):not(.contact-professional) {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
 }
 
 section:hover {
@@ -1077,9 +1083,7 @@ footer {
 
 /* SEO Section Full Width */
 .seo-section-full-width {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    position: relative;
+    width: 100%;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 40px 0;
 }
@@ -1553,7 +1557,13 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     main {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
+    }
+    
+    /* Add margins to centered sections on mobile */
+    section:not(.seo-section-full-width):not(.contact-professional) {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     section {
@@ -1808,7 +1818,13 @@ footer {
 /* Responsive design pour les petits écrans */
 @media (max-width: 768px) {
     main {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
+    }
+    
+    /* Add margins to centered sections on mobile */
+    section:not(.seo-section-full-width):not(.contact-professional) {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
     
     .github-container {
